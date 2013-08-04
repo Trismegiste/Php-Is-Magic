@@ -16,6 +16,12 @@ class FrankenTrait
     protected $interfaceList;
     protected $traitList;
 
+    /**
+     * 
+     * @param string $fqcn the name of the new class
+     * 
+     * @return $this
+     */
     public function start($fqcn)
     {
         $this->monsterName = $fqcn;
@@ -43,6 +49,14 @@ class FrankenTrait
         $this->traitList[] = new \ReflectionClass($fqcn);
     }
 
+    /**
+     * Adds an Interface with its associated Trait
+     * 
+     * @param string $interfaceName
+     * @param string $traitName (default the interface name suffixed with 'Impl'
+     * 
+     * @return $this
+     */
     public function addPart($interfaceName, $traitName = null)
     {
         if (is_null($traitName)) {
@@ -54,6 +68,13 @@ class FrankenTrait
         return $this;
     }
 
+    /**
+     * Gets the result
+     * 
+     * @return object
+     * 
+     * @throws \RuntimeException if generation failed
+     */
     public function getInstance()
     {
         $args = func_get_args();
