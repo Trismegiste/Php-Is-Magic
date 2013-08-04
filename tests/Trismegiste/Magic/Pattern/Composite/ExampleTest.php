@@ -44,7 +44,7 @@ class ExampleTest extends CompositeTestCase
         for ($k = 0; $k < $depth; $k++) {
             $current = $current->getIterator()->current();
         }
-        $this->assertInstanceOf('tests\Trismegiste\Magic\Pattern\Composite\Example\File', $current);
+        $this->assertInstanceOf(__NAMESPACE__. '\Example\File', $current);
     }
 
 }

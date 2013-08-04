@@ -162,13 +162,13 @@ class CompositeTest extends \PHPUnit_Framework_TestCase
         for ($k = 0; $k < $depth; $k++) {
             $current = $current->getIterator()->current();
         }
-        $this->assertInstanceOf('tests\Trismegiste\Magic\Pattern\BiDirTree\Example\File', $current);
+        $this->assertInstanceOf(__NAMESPACE__ . '\Example\File', $current);
 
         // go up
         for ($k = 0; $k < $depth; $k++) {
             $current = $current->getParent();
         }
-        $this->assertInstanceOf('tests\Trismegiste\Magic\Pattern\BiDirTree\Example\Folder', $current);
+        $this->assertInstanceOf(__NAMESPACE__ . '\Example\Folder', $current);
         $this->assertTrue($current->isOrphan());
     }
 

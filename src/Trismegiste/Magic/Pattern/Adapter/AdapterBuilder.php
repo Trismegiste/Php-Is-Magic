@@ -16,9 +16,12 @@ class AdapterBuilder
     private $interfaceName;
     private $implementation = array();
 
-    public function __construct($fqcn)
+    public function adapt($fqcn)
     {
         $this->interfaceName = $fqcn;
+        $this->implementation = array();
+
+        return $this;
     }
 
     public function addMethod($name, \Closure $meth)
@@ -28,7 +31,7 @@ class AdapterBuilder
         return $this;
     }
 
-    public function getInstance($object)
+    public function getInstance()
     {
         $refl = new \ReflectionClass($this->interfaceName);
         $adapterName = $refl->getShortName() . 'Adapter_' . rand();
@@ -38,7 +41,7 @@ class AdapterBuilder
         eval($generated);
         $refl = new \ReflectionClass($refl->getNamespaceName() . '\\' . $adapterName);
 
-        $adaptee = $refl->newInstance($object);
+        $adaptee = $refl->newInstance();
         foreach ($this->implementation as $name => $method) {
             $adaptee->addAdaptedMethod($name, \Closure::bind($method, $adaptee, $refl->getName()));
         }
@@ -50,9 +53,7 @@ class AdapterBuilder
     {
         $namespace = $refl->getNamespaceName();
         $shortName = $refl->getShortName();
-        $body = ' protected $adaptee; 
-            protected $dynamicMethod;
-            public function __construct($obj) { $this->adaptee = $obj; } 
+        $body = ' protected $dynamicMethod;
             public function addAdaptedMethod($name, \Closure $cls) { $this->dynamicMethod[$name] = $cls; }';
         foreach ($refl->getMethods() as $method) {
             if (!preg_match('#^__#', $method->getName())) {

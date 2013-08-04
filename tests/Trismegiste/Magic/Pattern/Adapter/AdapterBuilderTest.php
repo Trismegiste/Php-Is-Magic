@@ -19,13 +19,15 @@ class AdapterBuilderTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->contract = 'tests\Trismegiste\Magic\Pattern\Adapter\ToBeParsed';
-        $this->builder = new AdapterBuilder($this->contract);
+        $this->contract = __NAMESPACE__ . '\ToBeParsed';
+        $this->builder = new AdapterBuilder();
     }
 
     public function testTyping()
     {
-        $newObj = $this->builder->getInstance(new \stdClass());
+        $newObj = $this->builder
+                ->adapt($this->contract)
+                ->getInstance();
         $this->assertInstanceOf($this->contract, $newObj);
     }
 
@@ -34,10 +36,11 @@ class AdapterBuilderTest extends \PHPUnit_Framework_TestCase
         $adaptee = new \stdClass();
         $adaptee->data = 'kuchinawa';
         $newObj = $this->builder
-                ->addMethod('getName', function() {
-                            return $this->adaptee->data;
+                ->adapt($this->contract)
+                ->addMethod('getName', function() use ($adaptee) {
+                            return $adaptee->data;
                         })
-                ->getInstance($adaptee);
+                ->getInstance();
         $this->assertEquals('kuchinawa', $newObj->getName());
     }
 

@@ -23,7 +23,7 @@ class MagicTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($mother1, $mother2);
         // now the subclass
         $child1 = Child::getInstance();
-        $this->assertInstanceOf('tests\Trismegiste\Magic\Pattern\Singleton\Child', $child1);
+        $this->assertInstanceOf(__NAMESPACE__ . '\Child', $child1);
         $child2 = Child::getInstance();
         $this->assertSame($child2, $child1);
         // check
