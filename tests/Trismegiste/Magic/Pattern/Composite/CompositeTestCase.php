@@ -1,7 +1,7 @@
 <?php
 
 /*
- * DesignPatternsPHP
+ * Php is magic
  */
 
 namespace tests\Trismegiste\Magic\Pattern\Composite;

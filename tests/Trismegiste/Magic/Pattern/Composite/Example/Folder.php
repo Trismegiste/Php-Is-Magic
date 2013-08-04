@@ -10,7 +10,7 @@ use Trismegiste\Magic\Pattern\Composite\Composite;
 use Trismegiste\Magic\Pattern\Composite\CompositeImpl;
 
 /**
- * File is a file in a folder
+ * Folder is a folder with children
  */
 class Folder implements Composite, ModelInterface
 {
