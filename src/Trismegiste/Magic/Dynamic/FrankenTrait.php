@@ -32,8 +32,6 @@ class FrankenTrait
             throw new \LogicException("$fqcn is not an interface");
         }
         $this->interfaceList[] = $added;
-
-        return $this;
     }
 
     protected function addTrait($fqcn)
@@ -43,8 +41,6 @@ class FrankenTrait
             throw new \LogicException("$fqcn is not a trait");
         }
         $this->traitList[] = new \ReflectionClass($fqcn);
-
-        return $this;
     }
 
     public function addPart($interfaceName, $traitName = null)
@@ -66,27 +62,20 @@ class FrankenTrait
         $shortName = array_pop($namespace);
         $namespace = implode('\\', $namespace);
 
-        $generated = "namespace $namespace {\n";
-        foreach ($this->interfaceList as $interf) {
-            $generated .= "use " . $interf->name . ";\n";
-        }
-        foreach ($this->traitList as $tra) {
-            $generated .= "use " . $tra->name . ";\n";
-        }
-
-        $generated .= "class $shortName implements ";
+        $generated = "namespace $namespace {\n class $shortName implements ";
         $sep = '';
         foreach ($this->interfaceList as $interf) {
-            $generated .= $sep . $interf->getShortname();
+            $generated .= $sep . '\\' . $interf->getName();
             $sep = ', ';
         }
         $generated .= " {\n  use ";
         $sep = '';
         foreach ($this->traitList as $tra) {
-            $generated .= $sep . $tra->getShortname();
+            $generated .= $sep . '\\' . $tra->getName();
             $sep = ', ';
         }
         $generated .= ";\n}\n}";
+
         try {
             eval($generated);
             $refl = new \ReflectionClass($this->monsterName);
