@@ -44,6 +44,28 @@ class AdapterBuilderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('kuchinawa', $newObj->getName());
     }
 
+    /**
+     * @expectedException LogicException
+     */
+    public function testInterfaceOnly()
+    {
+        $this->builder
+                ->adapt('\SplFixedArray')
+                ->getInstance();
+    }
+
+    /**
+     * @expectedException BadMethodCallException
+     * @expectedExceptionMessage getName is not implemented
+     */
+    public function testNotImplemented()
+    {
+        $newObj = $this->builder
+                ->adapt($this->contract)
+                ->getInstance();
+        $newObj->getName();
+    }
+
 }
 
 interface ToBeParsed
