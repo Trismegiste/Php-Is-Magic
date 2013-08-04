@@ -41,15 +41,21 @@ class AdapterBuilder
     {
         $refl = new \ReflectionClass($this->interfaceName);
         $adapterName = $refl->getShortName() . 'Adapter_' . rand();
+        // this trick to prevent some "genius" to add closures after generation :
+        $injectClosure = '_addAdaptedMethod_' . rand();
 
-        $generated = $this->generator->generateAdapter($refl, $adapterName);
+        $generated = $this->generator->generateAdapter($refl, $adapterName, $injectClosure);
 
-        eval($generated);
-        $refl = new \ReflectionClass($refl->getNamespaceName() . '\\' . $adapterName);
+        try {
+            eval($generated);
+            $refl = new \ReflectionClass($refl->getNamespaceName() . '\\' . $adapterName);
+            $adaptee = $refl->newInstance();
+        } catch (\Exception $e) {
+            throw new \RuntimeException($e->getMessage());
+        }
 
-        $adaptee = $refl->newInstance();
         foreach ($this->implementation as $name => $method) {
-            $adaptee->addAdaptedMethod($name, \Closure::bind($method, $adaptee, $refl->getName()));
+            call_user_func(array($adaptee, $injectClosure), $name, \Closure::bind($method, $adaptee, $refl->getName()));
         }
 
         return $adaptee;

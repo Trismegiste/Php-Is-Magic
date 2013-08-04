@@ -67,9 +67,3 @@ class AdapterBuilderTest extends \PHPUnit_Framework_TestCase
     }
 
 }
-
-interface ToBeParsed
-{
-
-    public function getName();
-}

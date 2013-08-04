@@ -12,7 +12,7 @@ namespace Trismegiste\Magic\Pattern\Adapter;
 class AdapterGenerator
 {
 
-    public function generateAdapter(\ReflectionClass $refl, $adapterName)
+    public function generateAdapter(\ReflectionClass $refl, $adapterName, $injectionMethod = 'addAdaptedMethod')
     {
         if (!$refl->isInterface()) {
             throw new \LogicException($refl->getNamespaceName() . ' must be an interface');
@@ -22,7 +22,7 @@ class AdapterGenerator
         $shortName = $refl->getShortName();
 
         $body = ' protected $dynamicMethod;
-            public function addAdaptedMethod($name, \Closure $cls) { 
+            public function ' . $injectionMethod . '($name, \Closure $cls) { 
                 $this->dynamicMethod[$name] = $cls; 
             }';
 
