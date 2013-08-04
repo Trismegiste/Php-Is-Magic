@@ -66,4 +66,16 @@ class AdapterBuilderTest extends \PHPUnit_Framework_TestCase
         $newObj->getName();
     }
 
+    public function testParam()
+    {
+        $newObj = $this->builder
+                ->adapt($this->contract)
+                ->addMethod('withParam', function(\SplFixedArray $arr, \Iterator &$it) {
+                            return $arr->getSize();
+                        })
+                ->getInstance();
+
+        $this->assertEquals(5, $newObj->withParam(new \SplFixedArray(5), new \ArrayIterator()));
+    }
+
 }

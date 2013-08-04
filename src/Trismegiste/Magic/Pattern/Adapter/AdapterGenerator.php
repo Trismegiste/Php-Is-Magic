@@ -53,7 +53,7 @@ class AdapterGenerator
                 throw new \BadMethodCallException('$name is not implemented');
             }
             return call_user_func_array(\$this->dynamicMethod['$name'], func_get_args()); 
-                }";
+                }\n";
 
         return $output;
     }
@@ -66,7 +66,7 @@ class AdapterGenerator
         } elseif (is_callable(array($param, 'isCallable')) && $param->isCallable()) {
             $output .= 'callable ';
         } elseif ($param->getClass()) {
-            $output .= $param->getClass()->getName() . ' ';
+            $output .= '\\' . $param->getClass()->getName() . ' ';
         }
         if ($param->isPassedByReference()) {
             $output .= '&';
