@@ -22,6 +22,13 @@ class AdapterBuilder
         $this->generator = new AdapterGenerator();
     }
 
+    /**
+     * Start a new adapter for an interface
+     * 
+     * @param string $fqcn the FQCN of the interface
+     * 
+     * @return \Trismegiste\Magic\Pattern\Adapter\AdapterBuilder $this instance
+     */
     public function adapt($fqcn)
     {
         $this->interfaceName = $fqcn;
@@ -30,6 +37,14 @@ class AdapterBuilder
         return $this;
     }
 
+    /**
+     * Bind a closure to a method of the adapted interface
+     * 
+     * @param string $name method name
+     * @param \Closure $meth implementation
+     * 
+     * @return \Trismegiste\Magic\Pattern\Adapter\AdapterBuilder
+     */
     public function addMethod($name, \Closure $meth)
     {
         $this->implementation[$name] = $meth;
@@ -37,6 +52,13 @@ class AdapterBuilder
         return $this;
     }
 
+    /**
+     * Gets the result
+     * 
+     * @return object the new wrapped adapted object
+     * 
+     * @throws \RuntimeException
+     */
     public function getInstance()
     {
         $refl = new \ReflectionClass($this->interfaceName);
