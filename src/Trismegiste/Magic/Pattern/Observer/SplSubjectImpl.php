@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Are-Php-Traits-Good-Or-Evil
+ * Magic php
  */
 
 namespace Trismegiste\Magic\Pattern\Observer;
