@@ -7,7 +7,7 @@
 namespace Trismegiste\Magic\Pattern\Decorator;
 
 /**
- * AdapterGenerator generates code based on an interface
+ * DecoratorGenerator generates code based on an interface
  */
 class DecoratorGenerator
 {

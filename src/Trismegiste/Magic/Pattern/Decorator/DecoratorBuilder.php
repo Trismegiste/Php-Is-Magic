@@ -8,7 +8,6 @@ namespace Trismegiste\Magic\Pattern\Decorator;
 
 /**
  * DecoratorBuilder builds on-the-fly decorated object
- * 
  */
 class DecoratorBuilder
 {
@@ -22,6 +21,13 @@ class DecoratorBuilder
         $this->generator = new DecoratorGenerator();
     }
 
+    /**
+     * Starts the building of a new decorator
+     * 
+     * @param string $fqcn FQCN of the interface
+     * 
+     * @return \Trismegiste\Magic\Pattern\Decorator\DecoratorBuilder this instance
+     */
     public function decorate($fqcn)
     {
         $this->interfaceName = $fqcn;
@@ -30,35 +36,52 @@ class DecoratorBuilder
         return $this;
     }
 
-    public function addMethod($name, \Closure $meth)
+    /**
+     * Overrides an existing method
+     * 
+     * @param string $name method name
+     * @param \Closure $meth implementation
+     * 
+     * @return \Trismegiste\Magic\Pattern\Decorator\DecoratorBuilder this instance
+     */
+    public function override($name, \Closure $meth)
     {
         $this->implementation[$name] = $meth;
 
         return $this;
     }
 
+    /**
+     * Gets the result
+     * 
+     * @param object $wrapped object that will be decorated
+     * 
+     * @return object the decorated object
+     * 
+     * @throws \RuntimeException if generation fails
+     */
     public function getInstance($wrapped)
     {
         $refl = new \ReflectionClass($this->interfaceName);
-        $adapterName = $refl->getShortName() . 'Decorator_' . rand();
+        $decoratorName = $refl->getShortName() . 'Decorator_' . rand();
         // this trick to prevent some "genius" to add closures after generation :
         $injectClosure = '_addDecoratedMethod_' . rand();
 
-        $generated = $this->generator->generate($refl, $adapterName, $injectClosure);
+        $generated = $this->generator->generate($refl, $decoratorName, $injectClosure);
 
         try {
             eval($generated);
-            $refl = new \ReflectionClass($refl->getNamespaceName() . '\\' . $adapterName);
-            $adaptee = $refl->newInstance($wrapped);
+            $refl = new \ReflectionClass($refl->getNamespaceName() . '\\' . $decoratorName);
+            $decorated = $refl->newInstance($wrapped);
         } catch (\Exception $e) {
             throw new \RuntimeException($e->getMessage());
         }
 
         foreach ($this->implementation as $name => $method) {
-            call_user_func(array($adaptee, $injectClosure), $name, \Closure::bind($method, $adaptee, $refl->getName()));
+            call_user_func(array($decorated, $injectClosure), $name, \Closure::bind($method, $decorated, $refl->getName()));
         }
 
-        return $adaptee;
+        return $decorated;
     }
 
 }

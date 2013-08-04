@@ -52,7 +52,7 @@ class DecoratorBuilderTest extends \PHPUnit_Framework_TestCase
     {
         $decorated = $this->builder
                 ->decorate(__NAMESPACE__ . '\Model')
-                ->addMethod('getTitle', function() {
+                ->override('getTitle', function() {
                             return '<h1>' . $this->wrapped->getTitle() . '</h1>';
                         })
                 ->getInstance($obj);

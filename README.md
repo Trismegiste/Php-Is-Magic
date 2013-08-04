@@ -1,12 +1,12 @@
 # PHP is Magic
 
-Ok, you already know that PHP is slow, heavy and with inconsistent syntax.
+Ok, you already know that PHP is slow, memory intensive and with inconsistent syntax.
 
-So, where are the plus sides ? 
+So, where are the plus sides ?
 
 This interpreted language has some hidden magic. This library try to use
-it without messing everything.
- 
+it without messing your project.
+
 ## Eval
 
 "eval is evil" (sounds good, I like that). O RLY ? Eval is very powerful.
@@ -30,7 +30,7 @@ average speed. Now PHP has reflection and not much slower than its average
 ## Trait
 
 Traits are very powerful. At first I was very skeptical but now, with good conventions,
-I think it is THE real shit of PHP 5.4. They have the power of multi-inheritance 
+I think it is THE real shit of PHP. They have the power of multi-inheritance 
 and solving the diamond problem.
 
 ## Closure
