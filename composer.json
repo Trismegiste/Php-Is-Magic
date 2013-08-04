@@ -1,0 +1,13 @@
+{
+    "name": "trismegiste/php-is-magic",
+    "description": "Library of useful magic tricks for PHP",
+    "license": "CC-BY-SA-3.0",
+    "autoload": {
+        "psr-0": {
+            "": "src"
+        }
+    },
+    "require": {
+        "php": ">=5.4"
+    }
+}
