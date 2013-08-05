@@ -13,7 +13,7 @@ than Observer since it's easier to track method invocations.
 But Mediator has a big flaw : it's a like a God object if you don't use ISP to
 split its usually-big public contract. And it's a dull job to do this when you
 start a project since interfaces of Colleagues are not frozen, each change
-must be repeat two or three times (ripple effect). Observer does not have
+must be repeated two or three times (ripple effect). Observer does not have
 this problem but it's too loosely coupled to keep strong type-hinting in method
 parameters.
 

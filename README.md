@@ -4,7 +4,7 @@ Ok, you already know that PHP is slow, memory intensive and with inconsistent sy
 
 So, where are the plus sides ?
 
-This interpreted language has some hidden magic. This library try to use
+This interpreted language has some hidden magic. This library tries to use
 it without messing your project.
 
 ## Eval
@@ -22,7 +22,7 @@ it with cautions.
 
 ## Reflection
 
-Long time ago, in a far far away galaxy I coded with c++ and RTTI was not in 
+Long time ago, in a far far away galaxy I was coding with VC++ and RTTI was not in 
 the standard. Later, Java has reflection but very slow compared to its
 average speed. Now PHP has reflection and not much slower than its average
 "slowness". Using it is not an issue.
@@ -36,7 +36,7 @@ and solving the diamond problem.
 ## Closure
 
 I'm talking about binded closures i.e linked to an object, not lamba functions.
-Many design patterns (like strategy and template method) can benefit from closures.
+Many design patterns (like Strategy and Command) can benefit from closures.
 
 ## Parsing PHP with PHP
 
@@ -54,12 +54,22 @@ Simulators can be helpful in early stage of development when your design are
 not finished and you want to test which pattern is suited. 
 Well, at least it's better than copy-paste some scripts from an old project :)
 
-I like to think it looks like an mobile device emulator on your desktop platform:
+I like to think it looks like a mobile device emulator on your desktop platform:
 slow, not suited for production but easier than deployment on your smartphone.
+
+## Notes
+
+Despite the fact that magic is a potential WTF generator, I try to minimize
+problems by forcing the use of interface, adding many validators and also 
+preventing mis-uses of some tools (see DecoratorBuilder for example).
+
+It is also an another way to explore common patterns with new features.
+For example, I believe traits will change the future of PHP frameworks
+(in fact it has already started).
 
 ## Doc
 
-I have provided a readme in each folder of a tool
+I have written a readme in each folder of a tool
 
 ## TODO
 

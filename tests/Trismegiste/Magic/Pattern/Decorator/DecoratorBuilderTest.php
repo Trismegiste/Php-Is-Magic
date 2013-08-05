@@ -60,6 +60,8 @@ class DecoratorBuilderTest extends \PHPUnit_Framework_TestCase
 
         $decorated->setTitle('The Forgotten II');
         $this->assertEquals('<h1>The Forgotten II</h1>', $decorated->getTitle());
+        // anyway it's still a Model :
+        $this->assertInstanceOf(__NAMESPACE__ . '\Model', $decorated);
     }
 
 }

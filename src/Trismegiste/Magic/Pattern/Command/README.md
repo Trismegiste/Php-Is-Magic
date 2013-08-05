@@ -22,9 +22,14 @@ $command->execute('Area', 3);
 $command->execArea(3);
 ```
 
-See test
+See tests
 
 ## Notes
 
-Feel free to add the Receiver (from the real design pattern) with "use ($receiver)"
+Feel free to inject the Receiver (from the real design pattern) with "use ($receiver)"
 in the Closure.
+
+Ready to be refactored with a real Command Pattern : use a full interface to
+declare the 'execXxxxx' methods.
+
+Also could be used as an abstract factory (without type-hinting anyway) 
