@@ -17,6 +17,7 @@ class FrankenTrait
     protected $traitList;
 
     /**
+     * Starts to build a new mixin
      * 
      * @param string $fqcn the name of the new class
      * 
@@ -53,7 +54,7 @@ class FrankenTrait
      * Adds an Interface with its associated Trait
      * 
      * @param string $interfaceName
-     * @param string $traitName (default the interface name suffixed with 'Impl'
+     * @param string $traitName (default = interface fqcn suffixed with 'Impl')
      * 
      * @return $this
      */

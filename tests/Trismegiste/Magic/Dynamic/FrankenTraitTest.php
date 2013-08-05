@@ -31,6 +31,9 @@ class FrankenTraitTest extends \PHPUnit_Framework_TestCase
                 ->getInstance('Kiki');
 
         $this->assertEquals('Kiki', $monster->getName());
+
+        $this->expectOutputString('I walk');
+        $monster->walk();
     }
 
 }

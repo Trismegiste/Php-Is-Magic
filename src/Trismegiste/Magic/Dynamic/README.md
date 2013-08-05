@@ -22,14 +22,14 @@ It is a builder with fluent interface. Default naming conventions are mine, sorr
 ```
 doctor = new FrankenTrait();
 $monster = $this->doctor
-        ->start("Castle\Creature")
-        ->addPart(__NAMESPACE__ . '\Parts\Person')
-        ->addPart(__NAMESPACE__ . '\Parts\TwoArmed')
-        ->addPart(__NAMESPACE__ . '\Parts\TwoLegged')
-        ->getInstance('Kiki');
+        ->start("Castle\Creature")  // classname
+        ->addPart('\Parts\Person')  
+        ->addPart('\Parts\TwoArmed')
+        ->addPart('\Parts\TwoLegged')
+        ->getInstance('Kiki');  // param constructor
 ```
 
-Each addPart adds the interface and the trait named with a suffix Impl (can be
-overriden)
+Each addPart adds an interface and a trait. If trait name is empty,
+the trait name is the interface name suffixed with 'Impl'.
  
 See unit test.
