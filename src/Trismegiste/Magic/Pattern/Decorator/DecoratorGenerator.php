@@ -15,7 +15,7 @@ class DecoratorGenerator
     public function generate(\ReflectionClass $refl, $adapterName, $injectionMethod = 'addClosure')
     {
         if (!$refl->isInterface()) {
-            throw new \LogicException($refl->getNamespaceName() . ' must be an interface');
+            throw new \LogicException($refl->getName() . ' must be an interface');
         }
 
         $namespace = $refl->getNamespaceName();

@@ -15,7 +15,7 @@ class AdapterGenerator
     public function generateAdapter(\ReflectionClass $refl, $adapterName, $injectionMethod = 'addAdaptedMethod')
     {
         if (!$refl->isInterface()) {
-            throw new \LogicException($refl->getNamespaceName() . ' must be an interface');
+            throw new \LogicException($refl->getName() . ' must be an interface');
         }
 
         $namespace = $refl->getNamespaceName();

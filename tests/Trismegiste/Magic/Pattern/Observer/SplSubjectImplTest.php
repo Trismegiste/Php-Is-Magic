@@ -34,6 +34,18 @@ class SplSubjectImplTest extends \PHPUnit_Framework_TestCase
         $this->subject->notify();
     }
 
+    public function testUnsubscribe()
+    {
+        $this->subject->attach($this->observer);
+        $this->observer
+                ->expects($this->never())
+                ->method('update');
+
+        $this->subject->detach($this->observer);
+        // notify observers (no one has subscribed)
+        $this->subject->notify();
+    }
+
 }
 
 // example test

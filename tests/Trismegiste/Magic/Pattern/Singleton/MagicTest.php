@@ -30,4 +30,23 @@ class MagicTest extends \PHPUnit_Framework_TestCase
         $this->assertNotEquals($mother1, $child1);
     }
 
+    /**
+     * @expectedException \LogicException
+     */
+    public function testWakeup()
+    {
+        $inst = Singleton::getInstance();
+        $dump = serialize($inst); // call __sleep()
+        unserialize($dump); // call __wakeup()
+    }
+
+    public function testForCodeCoverage()
+    {
+        $obj = Singleton::getInstance();
+
+        $refl = new \ReflectionObject($obj);
+        $meth = $refl->getMethod('__clone');
+        $this->assertTrue($meth->isPrivate());
+    }
+
 }

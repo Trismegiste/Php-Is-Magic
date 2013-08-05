@@ -15,8 +15,9 @@ namespace Trismegiste\Magic\Pattern\Singleton;
  * the Open Close Principle. Furthermore, it is static, therefore global, therefore
  * evil.
  *
- * If you want to follow DIP, don't use this pattern.
- *
+ * If you want to follow DIP, don't use this pattern, use a DiC
+ * 
+ * Last but not the least this pattern is not SRP
  */
 class Singleton
 {
@@ -39,6 +40,9 @@ class Singleton
 
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     private function __clone()
     {
 
@@ -46,6 +50,8 @@ class Singleton
 
     public function __wakeup()
     {
+        // I prefer to throw an exception here because it's insanely hard to track 
+        // a bug with the session wakeup.
         throw new \LogicException('You cannot unserialize this Singleton');
     }
 

@@ -59,5 +59,22 @@ class CommandPoolTest extends \PHPUnit_Framework_TestCase
         $this->invoker->execute('WithReceiver');
         $this->invoker->execWithReceiver();
     }
-
+    
+    /**
+     * @expectedException RuntimeException
+     * @expectedExceptionMessage Unknown is not declared
+     */
+    public function testUnknown()
+    {
+        $this->invoker->execUnknown();
+    }
+    
+    /**
+     * @expectedException PHPUnit_Framework_Error
+     */
+    public function testBadMethod()
+    {
+        $this->invoker->wtf();
+        
+    }
 }

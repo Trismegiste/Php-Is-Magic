@@ -81,4 +81,12 @@ class MasterControlTest extends \PHPUnit_Framework_TestCase
                 ->export($obj, array('duplicate' => 'two'));
     }
 
+    /**
+     * @expectedException \BadMethodCallException
+     */
+    public function testUnknown()
+    {
+        $this->mediator->something();
+    }
+
 }

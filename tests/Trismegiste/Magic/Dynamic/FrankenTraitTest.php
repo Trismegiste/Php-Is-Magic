@@ -36,4 +36,36 @@ class FrankenTraitTest extends \PHPUnit_Framework_TestCase
         $monster->walk();
     }
 
+    /**
+     * @expectedException ReflectionException
+     */
+    public function testValidatorUnknownTrait()
+    {
+        $monster = $this->doctor
+                ->start("Castle\Creature")
+                ->addPart('\Iterator');
+    }
+
+    /**
+     * @expectedException LogicException
+     * @expectedExceptionMessage Iterator
+     */
+    public function testValidatorNotTrait()
+    {
+        $monster = $this->doctor
+                ->start("Castle\Creature")
+                ->addPart('Iterator', 'Iterator');
+    }
+
+    /**
+     * @expectedException LogicException
+     * @expectedExceptionMessage stdClass
+     */
+    public function testValidatorNotInterface()
+    {
+        $monster = $this->doctor
+                ->start("Castle\Creature")
+                ->addPart('stdClass');
+    }
+
 }

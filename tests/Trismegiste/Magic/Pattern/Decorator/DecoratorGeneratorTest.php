@@ -31,5 +31,14 @@ class DecoratorGeneratorTest extends \PHPUnit_Framework_TestCase
         $this->assertRegExp('#function getName\(\)#', $dump);
         $this->assertRegExp('#function withParam\(\\\\SplFixedArray#', $dump);
     }
+    
+    /**
+     * @expectedException \LogicException
+     * @expectedExceptionMessage stdClass must be
+     */
+    public function testValidator()
+    {
+        $this->generator->generate(new \ReflectionClass('\stdClass'), 'arf');
+    }
 
 }
