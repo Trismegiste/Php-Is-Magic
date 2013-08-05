@@ -8,4 +8,17 @@
         </testsuite>
     </testsuites>
 
+
+    <filter>
+        <whitelist addUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src</directory>
+        </whitelist>
+    </filter>
+
+    <logging>
+        <log type="coverage-html" target="doc/coverage" charset="UTF-8"
+             yui="true" highlight="false"
+             lowUpperBound="50" highLowerBound="90"/>
+    </logging>
+    
 </phpunit>
