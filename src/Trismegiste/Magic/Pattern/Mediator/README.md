@@ -47,11 +47,20 @@ $mediator
 
 $emit has no public method for $recv but $recv has a public method for $emit
 
+You can alias a method by providing a alias in the key :
+
+$mediator
+        ->export($emit, array())
+        ->export($recv, array('handle' => 'handleRequest'));
+```
+
+$emit will call 'handle()' and the mediator redirects to 'handleRequest' method of $recv
+
 See unit tests.
 
 ## Note
 
-The subscriber checks on name collisions. There's no aliasing or whatsoever.
+The subscriber checks on name collisions on aliases.
 
 When you start to code the real Mediator, don't forget to declare one or more
 interfaces to follow "Interface Segregation Principle". Each colleagues must

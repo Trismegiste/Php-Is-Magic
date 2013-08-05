@@ -23,4 +23,9 @@ class Emitter
         return $this->mediator->handleRequest();
     }
 
+    public function executeAlias()
+    {
+        return $this->mediator->handle();
+    }
+
 }

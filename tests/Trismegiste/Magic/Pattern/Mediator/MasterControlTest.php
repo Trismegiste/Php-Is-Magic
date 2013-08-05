@@ -15,31 +15,46 @@ class MasterControlTest extends \PHPUnit_Framework_TestCase
 {
 
     protected $mediator;
+    protected $emitter;
+    protected $receiver;
 
     protected function setUp()
     {
         $this->mediator = new MasterControl();
+        $this->emitter = new Emitter($this->mediator);
+        $this->receiver = $this->getMock(__NAMESPACE__ . '\Receiver');
     }
 
     public function testRequest()
     {
-        $emit = new Emitter($this->mediator);
-        $recv = $this->getMock(__NAMESPACE__ . '\Receiver');
         $this->mediator
-                ->export($emit, array())
-                ->export($recv, array('handleRequest'));
+                ->export($this->emitter, array())
+                ->export($this->receiver, array('handleRequest'));
 
-        $recv->expects($this->once())
+        $this->receiver->expects($this->once())
                 ->method('handleRequest')
                 ->will($this->returnValue(666));
 
-        $this->assertEquals(666, $emit->execute());
+        $this->assertEquals(666, $this->emitter->execute());
+    }
+
+    public function testAliasing()
+    {
+        $this->mediator
+                ->export($this->emitter, array())
+                ->export($this->receiver, array('handle' => 'handleRequest'));
+
+        $this->receiver->expects($this->once())
+                ->method('handleRequest')
+                ->will($this->returnValue(243));
+
+        $this->assertEquals(243, $this->emitter->executeAlias());
     }
 
     /**
      * @expectedException \LogicException
      */
-    public function testValidator1()
+    public function testValidatorObject()
     {
         $this->mediator->export('coucou', array());
     }
@@ -47,12 +62,23 @@ class MasterControlTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testValidator2()
+    public function testValidatorCollision1()
     {
         $obj = new \stdClass();
         $this->mediator
                 ->export($obj, array('duplicate'))
                 ->export($obj, array('duplicate'));
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testValidatorCollision2()
+    {
+        $obj = new \stdClass();
+        $this->mediator
+                ->export($obj, array('duplicate' => 'one'))
+                ->export($obj, array('duplicate' => 'two'));
     }
 
 }

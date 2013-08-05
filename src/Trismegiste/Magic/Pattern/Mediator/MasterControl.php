@@ -14,11 +14,6 @@ class MasterControl implements Mediator, Subscriber
 
     protected $colleagueMethod = array();
 
-    public function __construct()
-    {
-        
-    }
-
     /**
      * {@inheritDoc}
      * 
@@ -31,12 +26,15 @@ class MasterControl implements Mediator, Subscriber
             throw new \LogicException('1st parameter is not an object');
         }
 
-        foreach ($methodList as $method) {
-            if (array_key_exists($method, $this->colleagueMethod)) {
-                throw new \InvalidArgumentException("$method is already subscribed by "
-                . get_class($this->colleagueMethod[$method]));
+        foreach ($methodList as $alias => $method) {
+            if (!is_string($alias)) {
+                $alias = $method;
             }
-            $this->colleagueMethod[$method] = $obj;
+            if (array_key_exists($alias, $this->colleagueMethod)) {
+                throw new \InvalidArgumentException("$alias is already aliased to "
+                . get_class($this->colleagueMethod[$alias][0]) . "::$method");
+            }
+            $this->colleagueMethod[$alias] = array($obj, $method);
         }
 
         return $this;
@@ -51,9 +49,7 @@ class MasterControl implements Mediator, Subscriber
             throw new \BadMethodCallException("Method $name is not subscribed");
         }
 
-        $target = $this->colleagueMethod[$name];
-
-        return call_user_func_array(array($target, $name), $arguments);
+        return call_user_func_array($this->colleagueMethod[$name], $arguments);
     }
 
 }
