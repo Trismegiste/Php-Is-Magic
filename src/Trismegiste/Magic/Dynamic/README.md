@@ -23,9 +23,9 @@ It is a builder with fluent interface. Default naming conventions are mine, sorr
 doctor = new FrankenTrait();
 $monster = $this->doctor
         ->start("Castle\Creature")  // classname
-        ->addPart('\Parts\Person')  
-        ->addPart('\Parts\TwoArmed')
-        ->addPart('\Parts\TwoLegged')
+        ->addPart('Parts\Person')  
+        ->addPart('Parts\TwoArmed')
+        ->addPart('Parts\TwoLegged')
         ->getInstance('Kiki');  // param constructor
 ```
 

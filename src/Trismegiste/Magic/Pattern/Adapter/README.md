@@ -10,6 +10,7 @@ Most useful when you have bad legacy code you want to inject in kewl new code.
 ## Howto
 
 There is a builder named AdapterBuilder
+
 ```
 $builder = new AdapterBuilder();
 $newObj = $builder

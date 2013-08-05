@@ -34,8 +34,8 @@ class GetterSetterTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \BadMethodCallException
-     * @expectedExceptionMessage Method unknowMethod is unknown
+     * @expectedException PHPUnit_Framework_Error
+     * @expectedExceptionMessage Call to undefined method tests\Trismegiste\Magic\Proto\AnemicModel\Container::unknowMethod()
      */
     public function testFailedCall()
     {

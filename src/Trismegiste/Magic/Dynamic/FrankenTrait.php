@@ -72,6 +72,8 @@ class FrankenTrait
     /**
      * Gets the result
      * 
+     * @param mixed ... any number of arguments for the constructor
+     * 
      * @return object
      * 
      * @throws \RuntimeException if generation failed

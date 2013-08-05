@@ -36,7 +36,8 @@ trait GetterSetter
                 throw new \BadMethodCallException("Property $propName is not defined in " . __CLASS__);
             }
         } else {
-            throw new \BadMethodCallException("Method $methodName is unknown");
+            // simulate the same behavior than without magic call
+            trigger_error('Call to undefined method ' . get_class($this) . "::$methodName()", E_USER_ERROR);
         }
     }
 

@@ -18,7 +18,9 @@ and it is dynamic. The drawback is it's slower (just a little)
 ## Howto
 
 Starting with an interface. The decorator pattern is based on a contract, 
-both implemented by "real" object and by decorator.
+both implemented by "real" object and by decorator. If your kewl new source code
+don't rely on interfaces but concrete classes, well, I must inform you it 
+is not that kewl than you think...
 
 This builder instantiates a new decorator implementing the contract and wrapping
 an object which implements the same contract. 
@@ -33,7 +35,7 @@ $decorated = $builder
                 ->override('getTitle', function() {
                             return '<h1>' . $this->wrapped->getTitle() . '</h1>';
                         })
-                ->getInstance($wrapped);
+                ->getInstance($wrapped); // passes the original object
 ```
 
 As you see the wrapped object is accesible through $this->wrapped in the decorator.
@@ -45,5 +47,5 @@ enabled with the magic __call and closures but I don't want to let you build
 some Frankenstein's monsters. In this way, you keep relying on type-hinting.
 
 If you need more complicated decorator, code a real decorator pattern. This tool
-is only intended to build decorated object from time to time, with legacy code,
+is only intended to build decorated objects from time to time, with legacy code,
 for example.

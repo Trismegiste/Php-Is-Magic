@@ -16,7 +16,7 @@ Seems so.
 
 ## Magic method __call
 
-This magic method is powerful but it does not replace "hard" type-hinting.
+This magic method is powerful but it does not replace "strong" type-hinting.
 Practical for fast prototyping, it is not suited for further maintenance. Use 
 it with cautions.
 
@@ -29,7 +29,7 @@ average speed. Now PHP has reflection and not much slower than its average
 
 ## Trait
 
-Traits are very powerful. At first I was very skeptical but now, with good conventions,
+Traits are very efficient. At first I was very skeptical but now, with good conventions,
 I think it is THE real shit of PHP. They have the power of multi-inheritance 
 and solving the diamond problem.
 
@@ -46,7 +46,20 @@ Redefining and changing dynamically a class is possible but very slow.
 ## So what ?
 
 By combining all these features, I'll try to gather some magic tricks which 
-can be useful, specially when dealing with legacy code.
+can be useful, specially when dealing with legacy code. I like to think
+most of the tools provided here are like **simulators** and 
+not always good practices (specially true for design pattern simulators)
+
+Simulators can be helpful in early stage of development when your design are
+not finished and you want to test which pattern is suited. 
+Well, at least it's better than copy-paste some scripts from an old project :)
+
+I like to think it looks like an mobile device emulator on your desktop platform:
+slow, not suited for production but easier than deployment on your smartphone.
+
+## Doc
+
+I have provided a readme in each folder of a tool
 
 ## TODO
 
