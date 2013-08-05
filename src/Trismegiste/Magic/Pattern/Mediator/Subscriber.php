@@ -16,7 +16,7 @@ interface Subscriber
      * Subscribes an object and declares which methods can be accessed
      * 
      * @param object $obj
-     * @param array $method a list a method name
+     * @param array $method a list a method name (if a key is a string this will be an alias for the method)
      * 
      * @return $this for fluent interface
      */

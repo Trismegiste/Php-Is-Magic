@@ -31,8 +31,9 @@ class MasterControl implements Mediator, Subscriber
                 $alias = $method;
             }
             if (array_key_exists($alias, $this->colleagueMethod)) {
+                $found = $this->colleagueMethod[$alias];
                 throw new \InvalidArgumentException("$alias is already aliased to "
-                . get_class($this->colleagueMethod[$alias][0]) . "::$method");
+                . get_class($found[0]) . "::{$found[1]}");
             }
             $this->colleagueMethod[$alias] = array($obj, $method);
         }
