@@ -43,6 +43,9 @@ class CommandPoolTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(25, $this->invoker->execVolume(2, 2), 'mostly', 1);
     }
 
+    /**
+     * Full example of Command Pattern with a Receiver
+     */
     public function testWithReceiver()
     {
         $receiver = $this->getMock(__NAMESPACE__ . '\Receiver');

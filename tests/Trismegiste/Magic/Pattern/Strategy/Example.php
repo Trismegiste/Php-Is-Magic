@@ -6,16 +6,16 @@
 
 namespace tests\Trismegiste\Magic\Pattern\Strategy;
 
-use Trismegiste\Magic\Pattern\Strategy\Strategy;
-use Trismegiste\Magic\Pattern\Strategy\StrategyImpl;
+use Trismegiste\Magic\Pattern\Strategy\Context;
+use Trismegiste\Magic\Pattern\Strategy\ContextImpl;
 
 /**
  * Fixtures for tests
  */
-class Example implements Strategy
+class Example implements Context
 {
 
-    use StrategyImpl;
+    use ContextImpl;
 
     public function filter(array $lst)
     {

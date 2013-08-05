@@ -7,9 +7,9 @@
 namespace Trismegiste\Magic\Pattern\Strategy;
 
 /**
- * Strategy is a contract for a Context of Strategy Pattern
+ * Context is a contract for a Context of Strategy Pattern
  */
-interface Strategy
+interface Context
 {
 
     /**

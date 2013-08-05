@@ -7,9 +7,9 @@
 namespace Trismegiste\Magic\Pattern\Strategy;
 
 /**
- * StrategyImpl is an implementation of Strategy interface
+ * ContextImpl is an implementation of Context interface
  */
-trait StrategyImpl
+trait ContextImpl
 {
 
     private $strategyClosure;
