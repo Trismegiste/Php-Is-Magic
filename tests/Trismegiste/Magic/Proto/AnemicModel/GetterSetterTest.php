@@ -35,6 +35,22 @@ class GetterSetterTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @expectedException PHPUnit_Framework_Error
+     */
+    public function testBadFormat()
+    {
+        $this->object->getunreadable();
+    }
+
+    /**
+     * @expectedException PHPUnit_Framework_Error
+     */
+    public function testIDontLikeUnderscore()
+    {
+        $this->object->get_old_underscore_is_old();
+    }
+
+    /**
+     * @expectedException PHPUnit_Framework_Error
      * @expectedExceptionMessage Call to undefined method tests\Trismegiste\Magic\Proto\AnemicModel\Container::unknowMethod()
      */
     public function testFailedCall()
@@ -122,6 +138,7 @@ class Container extends Root
 
     protected $answer;
     private $notInherited;
+    protected $_old_underscore_is_old;
 
     public function getPrivate()
     {

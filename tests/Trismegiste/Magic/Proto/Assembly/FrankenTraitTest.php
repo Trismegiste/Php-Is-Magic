@@ -36,6 +36,17 @@ class FrankenTraitTest extends \PHPUnit_Framework_TestCase
         $monster->walk();
     }
 
+    public function testDifferentNaming()
+    {
+        $monster = $this->doctor
+                ->start("Castle\CyberCreature")
+                ->addPart(__NAMESPACE__ . '\Parts\Person')
+                ->addPart(__NAMESPACE__ . '\Parts\TwoLegged', __NAMESPACE__ . '\Parts\RobotLeggedTrait')
+                ->getInstance('Kiki');
+
+        $this->assertEquals('Kiki', $monster->getName());
+    }
+
     /**
      * @expectedException ReflectionException
      */
