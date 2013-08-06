@@ -15,7 +15,7 @@ interface Invoker
 {
 
     /**
-     * Attaches a closure to this command pool
+     * Attaches a command to this pool
      * 
      * @param string $name the name of the command
      * @param \Closure $cls the closure to call

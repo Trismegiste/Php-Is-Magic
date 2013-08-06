@@ -2,6 +2,16 @@
 
 An extended Composite Design Pattern 
 
+## What
+
+It's a Composite pattern with bi-directional navigation :
+ * from a node to its children
+ * from a child to its parent
+
+Since there is not class to
+extend, only interfaces and traits, you can use it no matter your model looks
+like and you do have strong typing.
+
 ## Howto
 
 Your node object with children must implement Composite and use trait CompositeImpl

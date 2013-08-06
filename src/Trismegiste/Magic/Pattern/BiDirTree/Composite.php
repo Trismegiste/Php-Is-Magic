@@ -13,14 +13,14 @@ interface Composite extends Component, \IteratorAggregate, \Countable
 {
 
     /**
-     * append a child to this node
+     * Appends a child to this node
      * 
      * @param \Trismegiste\Magic\Pattern\Composite\Component $object
      */
     public function append(Component $object);
 
     /**
-     * Remove a child from this node
+     * Removes a child from this node
      *  
      * @param \Trismegiste\Magic\Pattern\Composite\Component $object
      */

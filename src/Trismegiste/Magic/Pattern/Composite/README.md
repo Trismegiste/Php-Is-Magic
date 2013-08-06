@@ -1,5 +1,11 @@
 # Composite Design Pattern implementation
 
+## What
+
+It is Composite pattern default implementation. Since there is not class to
+extend, only interfaces and traits, you can use it no matter your model looks
+like and you do have strong typing.
+
 ## Howto
 
 Your node object with children must implement Composite and use trait CompositeImpl

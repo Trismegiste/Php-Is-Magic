@@ -32,4 +32,5 @@ in the Closure.
 Ready to be refactored with a real Command Pattern : use a full interface to
 declare the 'execXxxxx' methods.
 
-Also could be used as an abstract factory (without type-hinting anyway) 
+Also could be used as an abstract factory (without type-hinting anyway) if
+each closure creates a new object with the provided parameters.

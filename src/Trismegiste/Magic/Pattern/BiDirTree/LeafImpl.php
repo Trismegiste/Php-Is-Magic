@@ -34,7 +34,7 @@ trait LeafImpl
 
     public function setOrphan()
     {
-        if (!is_null($this->parentNode) && ($this->parentNode->contains($this   ))) {
+        if (!is_null($this->parentNode) && ($this->parentNode->contains($this))) {
             $this->parentNode->remove($this);
         }
         $this->parentNode = null;

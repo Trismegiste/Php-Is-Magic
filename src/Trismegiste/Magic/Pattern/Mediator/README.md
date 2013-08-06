@@ -47,7 +47,7 @@ $mediator
 
 $emit has no public method for $recv but $recv has a public method for $emit
 
-You can alias a method by providing a alias in the key :
+You can alias a method by providing an alias in the key :
 
 $mediator
         ->export($emit, array())

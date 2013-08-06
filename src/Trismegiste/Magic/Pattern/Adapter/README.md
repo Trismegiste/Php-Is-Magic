@@ -9,7 +9,9 @@ Most useful when you have bad legacy code you want to inject in kewl new code.
 
 ## Howto
 
-There is a builder named AdapterBuilder
+There is a builder named AdapterBuilder. You need an interface to specify the
+contract which adapter follows. If you don't have an interface, you cannot
+use a real adapter pattern so this simulator is pointless.
 
 ```
 $builder = new AdapterBuilder();
