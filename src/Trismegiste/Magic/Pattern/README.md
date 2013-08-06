@@ -1,6 +1,6 @@
 # Magic design patterns
 
-A colletion of design patterns redesigned with special features of PHP
+A collection of design patterns redesigned with special features of PHP
 
 ## What
 

@@ -4,7 +4,7 @@
  * PhpIsMagic
  */
 
-namespace Trismegiste\Magic\Dynamic;
+namespace Trismegiste\Magic\Proto\Assembly;
 
 /**
  * FrankenTrait builds objects based on trait and interface

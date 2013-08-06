@@ -4,9 +4,9 @@
  * PhpIsMagic
  */
 
-namespace tests\Trismegiste\Magic\Dynamic;
+namespace tests\Trismegiste\Magic\Proto\Assembly;
 
-use Trismegiste\Magic\Dynamic\FrankenTrait;
+use Trismegiste\Magic\Proto\Assembly\FrankenTrait;
 
 /**
  * FrankenTraitTest tests FrankenTrait

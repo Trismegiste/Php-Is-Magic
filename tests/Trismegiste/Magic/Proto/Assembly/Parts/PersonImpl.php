@@ -4,7 +4,7 @@
  * PhpIsMagic
  */
 
-namespace tests\Trismegiste\Magic\Dynamic\Parts;
+namespace tests\Trismegiste\Magic\Proto\Assembly\Parts;
 
 trait PersonImpl
 {
