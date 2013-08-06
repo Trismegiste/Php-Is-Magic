@@ -6,8 +6,8 @@ A Command pattern (sort of)
 
 It's an implementation of a command pattern with closure and magic call.
 
-You attach your closures to the CommandPool and call execute wih the command name
-and other arguments or use the magic call execMyCommandName($param).
+You attach your closures to the CommandPool and call execute with the command name
+and other parameters, or use the magic call execMyCommandName($param).
 
 ## How 
 

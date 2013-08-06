@@ -10,7 +10,7 @@ By dynamically assembling traits and interfaces, you can have both world :
 SRP, no copy-paste, fast prototyping and strong type-hinting.
 
 You need conventions : For each interface, you need an "implementation" of
-this interface in a trait. With this small pieces of code, you build complex
+this interface in a trait. With these small pieces of code, you build complex
 objects.
 
 ## How

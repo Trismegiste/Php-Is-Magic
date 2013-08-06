@@ -10,7 +10,7 @@ is for you
 
 ## How
 
-Just inherit from Strategy interface and use StrategyImpl trait, you're done.
+Just inherit from Context interface and use ContextImpl trait, you're done.
 
 There is a public method setStrategy() to inject your closure and a protected
 method callStrategy() to call the closure (and check if setted).
