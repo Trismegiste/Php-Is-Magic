@@ -31,5 +31,7 @@ $monster = $this->doctor
 
 Each addPart adds one interface and one trait. If trait name is unspecified,
 the trait name is the interface name suffixed with 'Impl'.
+
+Same interfaces and traits will give you the same class.
  
 See unit test.

@@ -79,4 +79,21 @@ class FrankenTraitTest extends \PHPUnit_Framework_TestCase
                 ->addPart('stdClass');
     }
 
+    public function testSameParamSameClass()
+    {
+        $monster1 = $this->doctor
+                ->start()
+                ->addPart(__NAMESPACE__ . '\Parts\Person')
+                ->getInstance('Kiki');
+
+        $monster2 = $this->doctor
+                ->start()
+                ->addPart(__NAMESPACE__ . '\Parts\Person')
+                ->getInstance('Koko');
+
+        $this->assertInstanceOf(get_class($monster1), $monster2);
+        $this->assertEquals('Kiki', $monster1->getName());
+        $this->assertEquals('Koko', $monster2->getName());
+    }
+
 }
