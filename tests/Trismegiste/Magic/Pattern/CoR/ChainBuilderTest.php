@@ -21,6 +21,7 @@ class ChainBuilderTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->builder = new ChainBuilder();
+        $this->builder->start();
         $this->request = $this->getMock('Trismegiste\Magic\Pattern\CoR\Request');
     }
 

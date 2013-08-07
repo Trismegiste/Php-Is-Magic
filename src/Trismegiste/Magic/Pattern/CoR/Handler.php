@@ -48,7 +48,7 @@ abstract class Handler
     /**
      * Each concrete handler has to implement the processing of the request
      * 
-     * @return bool true if the request has been processed
+     * @return bool true if the request has been handled (stop iterating the chain)
      */
     abstract protected function processing(Request $req);
 }
