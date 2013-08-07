@@ -31,6 +31,9 @@ class FrankenTraitTest extends \PHPUnit_Framework_TestCase
                 ->getInstance('Kiki');
 
         $this->assertEquals('Kiki', $monster->getName());
+        $this->assertInstanceOf(__NAMESPACE__ . '\Parts\Person', $monster);
+        $this->assertInstanceOf(__NAMESPACE__ . '\Parts\TwoArmed', $monster);
+        $this->assertInstanceOf(__NAMESPACE__ . '\Parts\TwoLegged', $monster);
 
         $this->expectOutputString('I walk');
         $monster->walk();
@@ -45,6 +48,8 @@ class FrankenTraitTest extends \PHPUnit_Framework_TestCase
                 ->getInstance('Kiki');
 
         $this->assertEquals('Kiki', $monster->getName());
+        $this->expectOutputString('I walk faster');
+        $monster->walk();
     }
 
     /**

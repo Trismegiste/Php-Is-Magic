@@ -16,9 +16,7 @@ class FrankenTrait implements Builder
     protected $traitList;
 
     /**
-     * Starts to build a new mixin
-     * 
-     * @return $this
+     * @inheritDoc
      */
     public function start()
     {
@@ -47,12 +45,7 @@ class FrankenTrait implements Builder
     }
 
     /**
-     * Adds an Interface with its associated Trait
-     * 
-     * @param string $interfaceName
-     * @param string $traitName (default = interface fqcn suffixed with 'Impl')
-     * 
-     * @return $this
+     * @inheritDoc
      */
     public function addPart($interfaceName, $traitName = null)
     {
@@ -66,13 +59,7 @@ class FrankenTrait implements Builder
     }
 
     /**
-     * Gets the result
-     * 
-     * @param mixed ... any number of arguments for the constructor
-     * 
-     * @return object
-     * 
-     * @throws \RuntimeException if generation failed
+     * @inheritDoc
      */
     public function getInstance()
     {
