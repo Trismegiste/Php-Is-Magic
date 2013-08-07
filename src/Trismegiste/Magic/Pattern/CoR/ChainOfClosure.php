@@ -21,6 +21,13 @@ class ChainOfClosure
         return $this;
     }
 
+    public function prepend(\Closure $cls)
+    {
+        array_unshift($this->chain, $cls);
+
+        return $this;
+    }
+
     public function handle(Request $req)
     {
         $processed = false;

@@ -54,12 +54,12 @@ class ChainnTest extends \PHPUnit_Framework_TestCase
     public function testTwoLinkFirstOk()
     {
         $this->chain
-                ->append(function(Request $req) {
-                            $req->debug = 1;
+                ->prepend(function(Request $req) {
+                            $req->debug = 2;
                             return true;
                         })
-                ->append(function(Request $req) {
-                            $req->debug = 2;
+                ->prepend(function(Request $req) {
+                            $req->debug = 1;
                             return true;
                         });
         $this->assertEquals(1, $this->chain->handle($this->request));
