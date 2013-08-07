@@ -6,40 +6,37 @@
 
 namespace tests\Trismegiste\Magic\Pattern\CoR;
 
-use Trismegiste\Magic\Pattern\CoR\ChainOfClosure;
+use Trismegiste\Magic\Pattern\CoR\ChainBuilder;
 use Trismegiste\Magic\Pattern\CoR\Request;
 
 /**
  * ChainnTest tests ChainOfClosure
  */
-class ChainnTest extends \PHPUnit_Framework_TestCase
+class ChainBuilderTest extends \PHPUnit_Framework_TestCase
 {
 
-    protected $chain;
+    protected $builder;
     protected $request;
 
     protected function setUp()
     {
-        $this->chain = new ChainOfClosure();
+        $this->builder = new ChainBuilder();
         $this->request = $this->getMock('Trismegiste\Magic\Pattern\CoR\Request');
-    }
-
-    public function testEmpty()
-    {
-        $this->assertFalse($this->chain->handle($this->request));
     }
 
     public function testOneLink()
     {
-        $this->chain->append(function(Request $req) {
-                    return true;
-                });
-        $this->assertTrue($this->chain->handle($this->request));
+        $chain = $this->builder
+                ->append(function(Request $req) {
+                            return true;
+                        })
+                ->getResult();
+        $this->assertTrue($chain->handle($this->request));
     }
 
     public function testTwoLink()
     {
-        $this->chain
+        $chain = $this->builder
                 ->append(function(Request $req) {
                             $req->debug = 1;
                             return false;
@@ -47,13 +44,14 @@ class ChainnTest extends \PHPUnit_Framework_TestCase
                 ->append(function(Request $req) {
                             $req->debug = 2;
                             return true;
-                        });
-        $this->assertEquals(2, $this->chain->handle($this->request));
+                        })
+                ->getResult();
+        $this->assertEquals(2, $chain->handle($this->request));
     }
 
     public function testTwoLinkFirstOk()
     {
-        $this->chain
+        $chain = $this->builder
                 ->prepend(function(Request $req) {
                             $req->debug = 2;
                             return true;
@@ -61,8 +59,9 @@ class ChainnTest extends \PHPUnit_Framework_TestCase
                 ->prepend(function(Request $req) {
                             $req->debug = 1;
                             return true;
-                        });
-        $this->assertEquals(1, $this->chain->handle($this->request));
+                        })
+                ->getResult();
+        $this->assertEquals(1, $chain->handle($this->request));
     }
 
 }
