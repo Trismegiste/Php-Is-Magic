@@ -46,7 +46,7 @@ class GetterSetterTest extends \PHPUnit_Framework_TestCase
      */
     public function testIDontLikeUnderscore()
     {
-        $this->object->get_old_underscore_is_old();
+        $this->object->getOld_underscore_is_old();
     }
 
     /**
@@ -71,7 +71,7 @@ class GetterSetterTest extends \PHPUnit_Framework_TestCase
      * @expectedException \BadMethodCallException
      * @expectedExceptionMessage Property injection is not defined
      */
-    public function testPropInjection()
+    public function testNotWorkingOnInjectedProperty()
     {
         $this->object->injection = 666;
         $this->object->getInjection();
@@ -138,7 +138,7 @@ class Container extends Root
 
     protected $answer;
     private $notInherited;
-    protected $_old_underscore_is_old;
+    protected $old_underscore_is_old;
 
     public function getPrivate()
     {

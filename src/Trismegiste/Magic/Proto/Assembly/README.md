@@ -22,7 +22,7 @@ It is a builder with fluent interface. Default naming conventions are mine, sorr
 ```
 $doctor = new FrankenTrait();
 $monster = $this->doctor
-        ->start("Castle\Creature")  // classname
+        ->start()  // reset builder
         ->addPart('Parts\Person')   // adds Person interface and PersonImpl trait
         ->addPart('Parts\TwoArmed') // adds TwoArmed interface and TwoArmedImpl trait
         ->addPart('Parts\TwoLegged', 'Parts\RobotLeggedTrait') // adds TwoLegged interface and RobotLeggedTrait trait

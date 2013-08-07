@@ -8,9 +8,10 @@ Here it is a collection of DP re-visitied with the extra-features of PHP 5.4
 
 The 23 DP of Gang of Four was originally thought with C++ in mind 
 (see he Adapter Class DP for exemple). Then comes Java and its single concrete
-inheritance and we lost some special features of C++. Since the lost of 
-concrete multi-inheritance was not a big deal (IMO), there is no reason to try
-to revive it with trait and some magic tricks.
+inheritance and we lost some special features of C++. The lost of 
+concrete multi-inheritance was not a big deal (IMO), but there is no reason to try
+to adapt some of these DP with unique features of PHP like trait, magic
+methods and closures.
 
 ## How 
 

@@ -9,23 +9,19 @@ namespace Trismegiste\Magic\Proto\Assembly;
 /**
  * FrankenTrait builds objects based on trait and interface
  */
-class FrankenTrait
+class FrankenTrait implements Builder
 {
 
-    protected $monsterName;
     protected $interfaceList;
     protected $traitList;
 
     /**
      * Starts to build a new mixin
      * 
-     * @param string $fqcn the name of the new class
-     * 
      * @return $this
      */
-    public function start($fqcn)
+    public function start()
     {
-        $this->monsterName = $fqcn;
         $this->interfaceList = array();
         $this->traitList = array();
 
@@ -82,10 +78,27 @@ class FrankenTrait
     {
         $args = func_get_args();
 
-        $namespace = explode('\\', $this->monsterName);
-        $shortName = array_pop($namespace);
-        $namespace = implode('\\', $namespace);
+        $namespace = __NAMESPACE__;
+        $shortName = 'Creature_' . spl_object_hash($this);
+        $fqcn = $namespace . '\\' . $shortName;
+        // generation
+        if (!class_exists($fqcn)) {
+            $generated = $this->generate($namespace, $shortName);
+            try {
+                eval($generated);
+            } catch (\Exception $e) {
+                throw new \RuntimeException('Failing at building ' . $e->getMessage());
+            }
+        }
+        // instantiation
+        $refl = new \ReflectionClass($fqcn);
+        $monster = $refl->newInstanceArgs($args);
 
+        return $monster;
+    }
+
+    protected function generate($namespace, $shortName)
+    {
         $generated = "namespace $namespace {\n class $shortName implements ";
         $sep = '';
         foreach ($this->interfaceList as $interf) {
@@ -100,15 +113,7 @@ class FrankenTrait
         }
         $generated .= ";\n}\n}";
 
-        try {
-            eval($generated);
-            $refl = new \ReflectionClass($this->monsterName);
-            $monster = $refl->newInstanceArgs($args);
-        } catch (\Exception $e) {
-            throw new \RuntimeException('Failing at building ' . $e->getMessage());
-        }
-
-        return $monster;
+        return $generated;
     }
 
 }

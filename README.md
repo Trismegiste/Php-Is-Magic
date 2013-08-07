@@ -51,7 +51,7 @@ most of the tools provided here are like **simulators** and
 not always good practices (specially true for design pattern simulators)
 
 Simulators can be helpful in early stage of development when your design are
-not finished and you want to test which pattern is suited. 
+not finished and you want to test which pattern is suited to solve your problem. 
 Well, at least it's better than copy-paste some scripts from an old project :)
 
 I like to think it looks like a mobile device emulator on your desktop platform:
@@ -74,5 +74,3 @@ I have written a readme in each folder of a tool
 ## TODO
 
  * bundle for symfony
-
-

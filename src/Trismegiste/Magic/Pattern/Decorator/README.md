@@ -49,3 +49,7 @@ some Frankenstein's monsters. In this way, you keep relying on type-hinting.
 If you need more complicated decorator, code a real decorator pattern. This tool
 is only intended to build decorated objects from time to time, with legacy code,
 for example.
+
+The decorator has a generator public method to inject closures but its name
+is randomize to forbid you to change overriding after instantiation. With
+the decorator cannot be mis-used from its original behavior. 

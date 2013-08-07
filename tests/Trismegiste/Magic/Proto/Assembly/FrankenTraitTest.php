@@ -24,7 +24,7 @@ class FrankenTraitTest extends \PHPUnit_Framework_TestCase
     public function testMonster()
     {
         $monster = $this->doctor
-                ->start("Castle\Creature")
+                ->start()
                 ->addPart(__NAMESPACE__ . '\Parts\Person')
                 ->addPart(__NAMESPACE__ . '\Parts\TwoArmed')
                 ->addPart(__NAMESPACE__ . '\Parts\TwoLegged')
@@ -39,7 +39,7 @@ class FrankenTraitTest extends \PHPUnit_Framework_TestCase
     public function testDifferentNaming()
     {
         $monster = $this->doctor
-                ->start("Castle\CyberCreature")
+                ->start()
                 ->addPart(__NAMESPACE__ . '\Parts\Person')
                 ->addPart(__NAMESPACE__ . '\Parts\TwoLegged', __NAMESPACE__ . '\Parts\RobotLeggedTrait')
                 ->getInstance('Kiki');
@@ -53,8 +53,8 @@ class FrankenTraitTest extends \PHPUnit_Framework_TestCase
     public function testValidatorUnknownTrait()
     {
         $monster = $this->doctor
-                ->start("Castle\Creature")
-                ->addPart('\Iterator');
+                ->start()
+                ->addPart('Iterator');
     }
 
     /**
@@ -64,7 +64,7 @@ class FrankenTraitTest extends \PHPUnit_Framework_TestCase
     public function testValidatorNotTrait()
     {
         $monster = $this->doctor
-                ->start("Castle\Creature")
+                ->start()
                 ->addPart('Iterator', 'Iterator');
     }
 
@@ -75,7 +75,7 @@ class FrankenTraitTest extends \PHPUnit_Framework_TestCase
     public function testValidatorNotInterface()
     {
         $monster = $this->doctor
-                ->start("Castle\Creature")
+                ->start()
                 ->addPart('stdClass');
     }
 
