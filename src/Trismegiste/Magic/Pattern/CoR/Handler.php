@@ -36,7 +36,7 @@ abstract class Handler
         $req->forDebugOnly = get_called_class();
         $processed = $this->processing($req);
         if (!$processed) {
-            // the request has not been processed by this handler => see the next
+            // the request was not processed by this handler => see the next
             if (!is_null($this->successor)) {
                 $processed = $this->successor->handle($req);
             }
