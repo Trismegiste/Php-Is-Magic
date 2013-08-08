@@ -1,5 +1,7 @@
 # PHP is Magic
 
+![Pony](./doc/img/pony.jpg)
+
 Ok, you already know that PHP is slow, memory intensive and with inconsistent syntax.
 
 So, where are the plus sides ?
@@ -15,6 +17,8 @@ But with great power comes great responsibility. Most of the mockup frameworks
 Seems so.
 
 ## Magic method __call
+
+![color](./doc/img/gandalf.jpg)
 
 This magic method is powerful but it does not replace "strong" type-hinting.
 Practical for fast prototyping, it is not suited for further maintenance. Use 
@@ -39,6 +43,8 @@ I'm talking about bound closures i.e linked to an object, not [lamba functions][
 Many design patterns (like Strategy and Command) can benefit from closures.
 
 ## Parsing PHP with PHP
+
+![harry](./doc/img/harry.jpg)
 
 There is a wonderful libray called nikic/PHPParser which does magic too.
 Redefining and changing dynamically a class is possible but very slow.
