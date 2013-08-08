@@ -4,13 +4,13 @@ A dynamic mediator simulator
 
 ## Why
 
-Mediator and Observer patterns are very close in features but very different
+[Mediator][2] and Observer patterns are very close in features but very different
 in terms of coding.
 
 Mediator is a good pattern because in most time, it's more easy to debug
 than Observer since it's easier to track method invocations.
 
-But Mediator has a big flaw : it's a like a God object if you don't use ISP to
+But Mediator has a big flaw : it's a like a God object if you don't use [ISP][1] to
 split its usually-big public contract. And it's a dull job to do this when you
 start a project since interfaces of Colleagues are not frozen, each change
 must be repeated two or three times (ripple effect). Observer does not have
@@ -64,6 +64,9 @@ See unit tests.
 The subscriber checks on name collisions on aliases.
 
 When you start to code the real Mediator, don't forget to declare one or more
-interfaces to follow "Interface Segregation Principle". Each colleagues must
+interfaces to follow "[Interface Segregation Principle][1]". Each colleagues must
 only see a small part of the Mediator public contract. This pattern needs a lot
 of abstraction.
+
+[1]: http://en.wikipedia.org/wiki/Interface_segregation_principle
+[2]: http://en.wikipedia.org/wiki/Mediator_pattern
