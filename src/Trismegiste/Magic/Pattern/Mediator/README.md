@@ -23,7 +23,7 @@ developement, this simulator acts like an Mediator but it is coded like a Observ
 ## What
 
 So, this tool helps you to simulate a Mediator in early stage of development.
-Since there is absolutly no strong type-hinting, it is not suited for production.
+Since there is absolutely no strong type-hinting, it is not suited for production.
 
 When your Colleagues are in a more stable state, start coding a real Mediator.
 
@@ -49,6 +49,7 @@ $emit has no public method for $recv but $recv has a public method for $emit
 
 You can alias a method by providing an alias in the key :
 
+```
 $mediator
         ->export($emit, array())
         ->export($recv, array('handle' => 'handleRequest'));
