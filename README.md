@@ -11,7 +11,7 @@ it without messing your project.
 
 "eval is evil" (sounds good, I like that). O RLY ? Eval is very powerful.
 But with great power comes great responsibility. Most of the mockup frameworks 
-(PHPUnit for example) use eval. So, is this the Evil serving for the Good ? 
+([PHPUnit][2] for example) use eval. So, is this the Evil serving for the Good ? 
 Seems so.
 
 ## Magic method __call
@@ -31,11 +31,11 @@ average speed. Now PHP has reflection and not much slower than its average
 
 Traits are very efficient. At first I was very skeptical but now, with good conventions,
 I think it is THE real shit of PHP. They have the power of multi-inheritance 
-and solving the diamond problem.
+and solving the [diamond problem][3].
 
 ## Closure
 
-I'm talking about binded closures i.e linked to an object, not lamba functions.
+I'm talking about bound closures i.e linked to an object, not [lamba functions][4].
 Many design patterns (like Strategy and Command) can benefit from closures.
 
 ## Parsing PHP with PHP
@@ -54,8 +54,9 @@ Simulators can be helpful in early stage of development when your design are
 not finished and you want to test which pattern is suited to solve your problem. 
 Well, at least it's better than copy-paste some scripts from an old project :)
 
-I like to think it looks like a mobile device emulator on your desktop platform:
-slow, not suited for production but easier than deployment on your smartphone.
+Read the listing of features in this library :
+ * [Design Pattern simulator/implementor](/src/Trismegiste/Magic/Pattern)
+ * [Fast Prototyping (boilerplate)](/src/Trismegiste/Magic/Proto)
 
 ## Notes
 
@@ -65,12 +66,17 @@ preventing mis-uses of some tools (see DecoratorBuilder for example).
 
 It is also an another way to explore common patterns with new features.
 For example, I believe traits will change the future of PHP frameworks
-(in fact it has already started).
+(in fact it has [already started][1]).
 
 ## Doc
 
-I have written a readme in each folder of a tool
+I have written a readme for each tool in its folder
 
 ## TODO
 
  * bundle for symfony
+
+[1]: http://silex.sensiolabs.org/doc/usage.html#traits
+[2]: https://github.com/sebastianbergmann/phpunit-mock-objects/blob/master/PHPUnit/Framework/MockObject/Generator.php#L272
+[3]: http://en.wikipedia.org/wiki/Multiple_inheritance#The_diamond_problem
+[4]: http://en.wikipedia.org/wiki/Anonymous_function
