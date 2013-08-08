@@ -1,11 +1,11 @@
 # Decorator Pattern
 
-A dynamic generation for Decorator of object
+A dynamic generation for [Decorator][1] of object
 
 ## What 
 
 This is a way to generate on-the-fly decorated object with eval and closures.
-Useful when you have bad legacy code you want to inject in kewl new code. 
+Useful when you have bad legacy objects you want to inject in kewl new code. 
 
 As you know, Decorator pattern lets you replace any object by its decorated
 version. Since it implements the same interface, clients don't notice the
@@ -15,7 +15,7 @@ In many situations, decorating an object is most efficient than
 inheritance because your classes are loosely-coupled
 and it is dynamic. The drawback is it's slower (just a little)
 
-## Howto
+## How
 
 Starting with an interface. The decorator pattern is based on a contract, 
 both implemented by "real" object and by decorator. If your kewl new source code
@@ -50,6 +50,8 @@ If you need more complicated decorator, code a real decorator pattern. This tool
 is only intended to build decorated objects from time to time, with legacy code,
 for example.
 
-The decorator has a generator public method to inject closures but its name
-is randomize to forbid you to change overriding after instantiation. With
+The decorator has a (generated) public method to inject closures but its name
+is randomized to forbid you to change overriding after instantiation. With this,
 the decorator cannot be mis-used from its original behavior. 
+
+[1]: http://en.wikipedia.org/wiki/Decorator_pattern
