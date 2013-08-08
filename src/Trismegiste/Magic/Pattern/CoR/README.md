@@ -6,8 +6,10 @@ A simulator of CoR with Closure
 
 It's a CoR builder using Closure instead of Handler classes.
 
-This builder creates a real chain where each item is a subclass of Handler.
-So, the day you want to replace closures with your subclasses, this can be done
+Despite the fact that you provided a set of closures for handling the request,
+this builder creates a chain with real handlers (subclases of Handler).
+
+So, the day you want to replace closures with your own subclasses, this can be done
 without changing clients of the CoR. You have only to inherit from Handler.
 
 ## How

@@ -14,9 +14,16 @@ class HandlerTest extends \PHPUnit_Framework_TestCase
 
     protected $handler;
 
-    protected function buildHandler()
+    protected function buildHandler($returnedValue = null)
     {
-        return $this->getMockForAbstractClass('Trismegiste\Magic\Pattern\CoR\Handler');
+        $mock = $this->getMockForAbstractClass('Trismegiste\Magic\Pattern\CoR\Handler');
+        if (!is_null($returnedValue)) {
+            $mock->expects($this->once())
+                    ->method('processing')
+                    ->will($this->returnValue($returnedValue));
+        }
+
+        return $mock;
     }
 
     public function buildRequest()
@@ -37,10 +44,7 @@ class HandlerTest extends \PHPUnit_Framework_TestCase
 
     public function testCallProcessing()
     {
-        $chain = $this->buildHandler();
-        $chain->expects($this->once())
-                ->method('processing')
-                ->will($this->returnValue(true));
+        $chain = $this->buildHandler(true);
 
         $request = $this->buildRequest();
         $ret = $chain->handle($request);
@@ -50,14 +54,8 @@ class HandlerTest extends \PHPUnit_Framework_TestCase
 
     public function testCallSuccessor()
     {
-        $chain = $this->buildHandler();
-        $chain->expects($this->once())
-                ->method('processing')
-                ->will($this->returnValue(false));
-        $succ = $this->buildHandler();
-        $succ->expects($this->once())
-                ->method('processing')
-                ->will($this->returnValue(true));
+        $chain = $this->buildHandler(false);
+        $succ = $this->buildHandler(true);
 
         $chain->append($succ);
 
