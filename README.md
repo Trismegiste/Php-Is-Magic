@@ -18,11 +18,11 @@ Seems so.
 
 ## Magic method __call
 
-![color](./doc/img/gandalf.jpg)
-
 This magic method is powerful but it does not replace "strong" type-hinting.
 Practical for fast prototyping, it is not suited for further maintenance. Use 
 it with cautions.
+
+![color](./doc/img/gandalf.jpg)
 
 ## Reflection
 
@@ -37,6 +37,8 @@ Traits are very efficient. At first I was very skeptical but now, with good conv
 I think it is THE real shit of PHP. They have the power of multi-inheritance 
 and solving the [diamond problem][3].
 
+![shrike](./doc/img/nagato.jpg)
+
 ## Closure
 
 I'm talking about bound closures i.e linked to an object, not [lamba functions][4].
@@ -44,10 +46,10 @@ Many design patterns (like Strategy and Command) can benefit from closures.
 
 ## Parsing PHP with PHP
 
-![harry](./doc/img/harry.jpg)
-
 There is a wonderful libray called nikic/PHPParser which does magic too.
 Redefining and changing dynamically a class is possible but very slow.
+
+![harry](./doc/img/harry.jpg)
 
 ## So what ?
 
