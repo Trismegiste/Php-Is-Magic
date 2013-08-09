@@ -9,6 +9,8 @@ So, where are the plus sides ?
 This interpreted language has some hidden magic. This library tries to use
 it without messing your project.
 
+Despite the funny pics, this lib is fully tested : [![Build Status](https://travis-ci.org/Trismegiste/Php-Is-Magic.png?branch=master)](https://travis-ci.org/Trismegiste/Php-Is-Magic)
+
 ## Eval
 
 "eval is evil" (sounds good, I like that). O RLY ? Eval is very powerful.
