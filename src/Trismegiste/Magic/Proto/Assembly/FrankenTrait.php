@@ -41,7 +41,7 @@ class FrankenTrait implements Builder
         if (!$added->isTrait()) {
             throw new \LogicException("$fqcn is not a trait");
         }
-        $this->traitList[] = new \ReflectionClass($fqcn);
+        $this->traitList[] = $added;
     }
 
     /**

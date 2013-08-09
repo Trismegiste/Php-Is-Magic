@@ -8,8 +8,8 @@ It's a Composite pattern with bi-directional navigation :
  * from a node to its children
  * from a child to its parent
 
-Since there is not class to
-extend, only interfaces and traits, you can use it no matter your model looks
+Since there is no class to
+extend, only interfaces and traits to add, you can use it no matter your model looks
 like and you do have strong typing.
 
 ## Howto

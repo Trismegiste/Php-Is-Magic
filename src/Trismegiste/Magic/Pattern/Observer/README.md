@@ -2,8 +2,8 @@
 
 ## What
 
-Since there is not class to
-extend, only one interface to add and one trait, you can use it no matter your model looks
+Since there is no class to
+extend, only one interface and one trait to add, you can use it no matter your model looks
 like and you do have strong typing.
 
 ## Howto

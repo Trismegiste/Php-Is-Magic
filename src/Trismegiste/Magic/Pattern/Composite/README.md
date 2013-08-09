@@ -2,8 +2,8 @@
 
 ## What
 
-It is Composite pattern default implementation. Since there is not class to
-extend, only interfaces and traits, you can use it no matter your model looks
+It is Composite pattern default implementation. Since there is no class to
+extend, only interfaces and traits to add, you can use it no matter your model looks
 like and you do have strong typing.
 
 ## Howto
