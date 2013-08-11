@@ -15,7 +15,7 @@ methods and closures.
 
 ## How 
 
-There is two kinds of pattern here : magic patterns which rely on eval, __call
+There are two kinds of pattern here : magic patterns which rely on eval, __call
 or closure that you can use AS IS. They are much like emulators of pattern than
 real new implementation (I don't pretend to invent anything here,
 the GoF are the discovers of patterns for OOP, thanks to them !). 
