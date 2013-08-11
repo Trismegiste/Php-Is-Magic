@@ -6,7 +6,7 @@ Since there is no class to
 extend, only one interface and one trait to add, you can use it no matter your model looks
 like and you do have strong typing.
 
-## Howto
+## How
 
 The observer object must implement \SplObserver
 

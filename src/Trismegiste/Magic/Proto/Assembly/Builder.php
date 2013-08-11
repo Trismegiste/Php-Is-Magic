@@ -15,7 +15,7 @@ interface Builder
     /**
      * Starts to build a new mixin
      * 
-     * @return $this
+     * @return self
      */
     public function start();
 
@@ -25,7 +25,7 @@ interface Builder
      * @param string $interfaceName
      * @param string $traitName (default = interface fqcn suffixed with 'Impl')
      * 
-     * @return $this
+     * @return self
      */
     public function addPart($interfaceName, $traitName = null);
 

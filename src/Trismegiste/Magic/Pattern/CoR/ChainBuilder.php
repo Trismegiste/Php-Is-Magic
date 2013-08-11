@@ -14,6 +14,11 @@ class ChainBuilder
 
     protected $chain;
 
+    /**
+     * Start a new chain
+     * 
+     * @return self
+     */
     public function start()
     {
         $this->chain = null;

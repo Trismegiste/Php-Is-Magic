@@ -18,7 +18,7 @@ interface Subscriber
      * @param object $obj
      * @param array $method a list a method name (if a key is a string this will be an alias for the method)
      * 
-     * @return $this for fluent interface
+     * @return self for fluent interface
      */
     public function export($obj, array $method);
 }

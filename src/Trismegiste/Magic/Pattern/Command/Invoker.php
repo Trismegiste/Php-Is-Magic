@@ -20,7 +20,7 @@ interface Invoker
      * @param string $name the name of the command
      * @param \Closure $cls the closure to call
      * 
-     * @return $this for fluent interface
+     * @return self for fluent interface
      */
     public function attach($name, \Closure $cls);
 
