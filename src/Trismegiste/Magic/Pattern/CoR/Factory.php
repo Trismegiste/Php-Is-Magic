@@ -8,7 +8,7 @@ interface Factory
     /**
      * Gets the chain of responsibilities
      * 
-     * @return Hnndler
+     * @return Handler the head of the chain
      */
     function createChain();
 }

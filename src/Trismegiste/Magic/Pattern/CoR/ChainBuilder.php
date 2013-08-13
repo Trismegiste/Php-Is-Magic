@@ -79,9 +79,7 @@ class ChainBuilder implements Factory
     }
 
     /**
-     * Gets the built chain
-     * 
-     * @return Hnndler
+     * @inheritdoc
      */
     public function createChain()
     {

@@ -53,7 +53,7 @@ have the time. In the mean time, this tool is ready to go in production.
 
 Anyway, I think it is wise to encapsulate all the creation of the chain(s)
 in a factory(ies) so replacing this builder by your own chain will go 
-smoothly.
+smoothly (I've made a default contract for that with the interface "Factory")
 
 About subclassing Handler : it is a "constrained" handler, I mean, it is structured as a 
 Template Method so you don't have to bother to call successor. The only thing
