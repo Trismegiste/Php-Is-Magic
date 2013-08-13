@@ -31,7 +31,7 @@ class ChainBuilderTest extends \PHPUnit_Framework_TestCase
                 ->append(function(Request $req) {
                             return true;
                         })
-                ->getResult();
+                ->createChain();
         $this->assertTrue($chain->handle($this->request));
     }
 
@@ -46,7 +46,7 @@ class ChainBuilderTest extends \PHPUnit_Framework_TestCase
                             $req->debug = 2;
                             return true;
                         })
-                ->getResult();
+                ->createChain();
         $this->assertEquals(2, $chain->handle($this->request));
     }
 
@@ -61,7 +61,7 @@ class ChainBuilderTest extends \PHPUnit_Framework_TestCase
                             $req->debug = 1;
                             return true;
                         })
-                ->getResult();
+                ->createChain();
         $this->assertEquals(1, $chain->handle($this->request));
     }
 

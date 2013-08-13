@@ -39,7 +39,7 @@ $chain->handle($request);
 
 This pattern is really useful if there is a identified Request idea (like
 a mouse event on a GUI), it's not just a funny way to transform a linear algorithm
-into a recursive one. If you would have different chains builded with a pool of handlers,
+into a recursive one. If you would have different chains built with a pool of handlers,
 this pattern is suited. If there is only one chain without re-using handlers,
 forget it and K.I.S.S.
 
