@@ -6,17 +6,12 @@
 
 namespace tests\Trismegiste\Magic\Pattern\Mediator;
 
-use Trismegiste\Magic\Pattern\Mediator\Mediator;
+use Trismegiste\Magic\Pattern\Mediator\ColleagueImpl;
 
 class Emitter
 {
 
-    protected $mediator;
-
-    public function __construct(Mediator $mediator)
-    {
-        $this->mediator = $mediator;
-    }
+    use ColleagueImpl;
 
     public function execute()
     {

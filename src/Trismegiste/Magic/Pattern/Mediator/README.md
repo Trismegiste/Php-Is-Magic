@@ -29,8 +29,8 @@ When your Colleagues are in a more stable state, start coding a real Mediator.
 
 ## How
 
-Each colleague must have a pointer to the mediator (I don't provide an interface
-and a trait for that, it's too specific to your project). Notice that colleague
+Each colleague must have a pointer to the mediator (I provide a trait ColleagueImpl
+but since this is soft-typing, it is not mandatory). Notice that colleague
 only knows Mediator, not Subscriber, it will be a problem if Colleagues can
 change their subscribing.
 
