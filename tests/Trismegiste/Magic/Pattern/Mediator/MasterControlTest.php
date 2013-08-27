@@ -53,6 +53,7 @@ class MasterControlTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @expectedException \LogicException
+     * @expectedExceptionMessage object
      */
     public function testValidatorObject()
     {
@@ -61,24 +62,37 @@ class MasterControlTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage unknownMethod
      */
-    public function testValidatorCollision1()
+    public function testMethodExists()
     {
-        $obj = new \stdClass();
-        $this->mediator
-                ->export($obj, array('duplicate'))
-                ->export($obj, array('duplicate'));
+        $this->mediator->export($this->receiver, array('unknownMethod'));
     }
 
     /**
      * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage already aliased
+     */
+    public function testValidatorCollision1()
+    {
+        $this->mediator
+                ->export($this->receiver, array('handleRequest'))
+                ->export($this->receiver, array('handleRequest'));
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage already aliased
      */
     public function testValidatorCollision2()
     {
-        $obj = new \stdClass();
+        $obj = $this->getMockBuilder('Other')
+                ->setMethods(array('something'))
+                ->getMock();
+
         $this->mediator
-                ->export($obj, array('duplicate' => 'one'))
-                ->export($obj, array('duplicate' => 'two'));
+                ->export($this->receiver, array('duplicate' => 'handleRequest'))
+                ->export($obj, array('duplicate' => 'something'));
     }
 
     /**
