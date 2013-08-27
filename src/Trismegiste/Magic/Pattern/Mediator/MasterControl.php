@@ -31,20 +31,41 @@ class MasterControl implements Mediator, Subscriber
             if (!is_callable(array($obj, $method))) {
                 throw new \InvalidArgumentException(get_class($obj) . "::$method does not exist");
             }
-            // default aliasing
-            if (!is_string($alias)) {
-                $alias = $method;
-            }
-            // check alias collision
-            if (array_key_exists($alias, $this->colleagueMethod)) {
-                $found = $this->colleagueMethod[$alias];
-                throw new \InvalidArgumentException("$alias is already aliased to "
-                . get_class($found[0]) . "::{$found[1]}");
-            }
-            $this->colleagueMethod[$alias] = array($obj, $method);
+            $this->subscribe($obj, $method, $alias);
         }
 
         return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function exportAll($obj)
+    {
+        $refl = new \ReflectionClass($obj);
+        foreach ($refl->getMethods(\ReflectionMethod::IS_PUBLIC) as $meth) {
+            $name = $meth->getName();
+            if (!preg_match('#^__#', $name) && !$meth->isStatic()) {
+                $this->subscribe($obj, $name);
+            }
+        }
+
+        return $this;
+    }
+
+    protected function subscribe($obj, $method, $alias = null)
+    {
+        // default aliasing
+        if (!is_string($alias)) {
+            $alias = $method;
+        }
+        // check alias collision
+        if (array_key_exists($alias, $this->colleagueMethod)) {
+            $found = $this->colleagueMethod[$alias];
+            throw new \InvalidArgumentException("$alias is already aliased to "
+            . get_class($found[0]) . "::{$found[1]}");
+        }
+        $this->colleagueMethod[$alias] = array($obj, $method);
     }
 
     /**

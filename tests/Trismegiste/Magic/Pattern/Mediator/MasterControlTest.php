@@ -103,4 +103,17 @@ class MasterControlTest extends \PHPUnit_Framework_TestCase
         $this->mediator->something();
     }
 
+    public function testExportAll()
+    {
+        $this->mediator
+                ->exportAll($this->emitter)
+                ->exportAll($this->receiver);
+
+        $this->receiver->expects($this->once())
+                ->method('handleRequest')
+                ->will($this->returnValue(666));
+
+        $this->assertEquals(666, $this->emitter->execute());
+    }
+
 }

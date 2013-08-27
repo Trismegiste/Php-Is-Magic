@@ -48,7 +48,6 @@ $mediator
 $emit has no public method for $recv but $recv has a public method for $emit
 
 You can alias a method by providing an alias in the key :
-
 ```
 $mediator
         ->export($emit, array())
@@ -57,7 +56,16 @@ $mediator
 
 $emit will call 'handle()' and the mediator redirects to 'handleRequest' method of $recv
 
-See unit tests.
+There is also a method for exporting all methods from an object :
+```
+$mediator
+        ->exportAll($emit)
+        ->exportAll($recv);
+```
+will subscribe all non-static, non-magic, public methods from $emit and $recv :
+use it with cautions.
+
+See unit tests for futher informations.
 
 ## Note
 
