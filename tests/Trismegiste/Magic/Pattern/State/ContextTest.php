@@ -50,4 +50,21 @@ class ContextTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('order', $this->context->getState());
     }
 
+    /**
+     * @expectedException PHPUnit_Framework_Error
+     */
+    public function testErrorMagic()
+    {
+        $this->context->ffssfdfds();
+    }
+
+    /**
+     * @expectedException LogicException
+     * @expectedExceptionMessage not a valid state
+     */
+    public function testBadState()
+    {
+        $this->context->doTransition('for_test');
+    }
+
 }

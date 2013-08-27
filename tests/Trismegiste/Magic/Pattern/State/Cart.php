@@ -14,13 +14,17 @@ use Trismegiste\Magic\Pattern\State;
 class Cart implements State\Context
 {
 
-    use State\ContextImpl, State\MagicTransition;
+    use State\ContextImpl,
+        State\MagicTransition;
 
     public function __construct()
     {
         $this->addState('basket', array(
                     'payment' => function() {
                         $this->setState('order');
+                    },
+                    'for_test' => function() {
+                        $this->setState('basuhkasjk');
                     }
                 ))
                 ->addState('order', array(
@@ -32,10 +36,10 @@ class Cart implements State\Context
                     }
                 ))
                 ->addState('shipped', array(
-                    'cancel' => function () {
+                    'cancel' => function() {
                         throw new \LogicException();
                     },
-                    'archive' => function () {
+                    'archive' => function() {
                         $this->setState('archived');
                     }
                 ))
