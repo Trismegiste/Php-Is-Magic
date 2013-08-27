@@ -18,4 +18,11 @@ interface Context
      * @param string $tName transition's name
      */
     public function doTransition($tName);
+
+    /**
+     * Gets the current state
+     * 
+     * @return string
+     */
+    public function getState();
 }

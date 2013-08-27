@@ -40,6 +40,9 @@ trait ContextImpl
         $this->currentState = $name;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function doTransition($tName)
     {
         if (array_key_exists($tName, $this->finiteStateMachine[$this->currentState])) {
@@ -47,6 +50,9 @@ trait ContextImpl
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     public function getState()
     {
         return $this->currentState;

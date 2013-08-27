@@ -14,7 +14,7 @@ use Trismegiste\Magic\Pattern\State;
 class Cart implements State\Context
 {
 
-    use State\ContextImpl;
+    use State\ContextImpl, State\MagicTransition;
 
     public function __construct()
     {
