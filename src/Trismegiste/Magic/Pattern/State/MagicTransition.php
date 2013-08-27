@@ -7,7 +7,9 @@
 namespace Trismegiste\Magic\Pattern\State;
 
 /**
- * MagicTransition is an implementation for interface ...
+ * MagicTransition add aliasing to method doTransition($name)
+ * 
+ * Example : doTransition('payment') could be invoked with doPayment()
  */
 trait MagicTransition
 {

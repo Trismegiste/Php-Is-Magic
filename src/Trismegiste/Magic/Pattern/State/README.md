@@ -1,6 +1,6 @@
 # State Design Pattern
 
-A state pattern with closure
+A state pattern with closures
 
 ## What
 
@@ -26,7 +26,12 @@ $this->addState('basket', array(
 $context->doTransition('payment');             
 ```
 
+The first defined state is the initial state.
+
 All closures are bound to the context so you can use $this with correct visibility.
+
+Optionnaly, you can use the trait MagicTransition which alias all transitions call
+by a method doXxxxxx() where xxxxxx is the transition name. 
 
 ## Note
 

@@ -45,6 +45,7 @@ class ContextTest extends \PHPUnit_Framework_TestCase
 
     public function testMagicAlias()
     {
+        $this->assertEquals('basket', $this->context->getState());
         $this->context->doPayment();
         $this->assertEquals('order', $this->context->getState());
     }
