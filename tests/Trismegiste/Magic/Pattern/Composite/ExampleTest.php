@@ -44,7 +44,19 @@ class ExampleTest extends CompositeTestCase
         for ($k = 0; $k < $depth; $k++) {
             $current = $current->getIterator()->current();
         }
-        $this->assertInstanceOf(__NAMESPACE__. '\Example\File', $current);
+        $this->assertInstanceOf(__NAMESPACE__ . '\Example\File', $current);
+    }
+
+    public function testIterator()
+    {
+        $depth = 2;
+        $current = $this->buildNode($depth);
+        $it = new \Trismegiste\Magic\Pattern\Composite\Iterator($current);
+        $it2 = new \RecursiveTreeIterator($it);
+
+        foreach ($it2 as $etry) {
+            echo $etry . PHP_EOL;
+        }
     }
 
 }
