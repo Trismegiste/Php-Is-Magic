@@ -12,28 +12,36 @@ namespace Trismegiste\Magic\Pattern\FactoryMethod;
 class Generator
 {
 
-    public function generate($fqcnProduct)
+    public function getFactory($fqcnProduct)
     {
         $refl = new \ReflectionClass($fqcnProduct);
         $fmName = 'Concrete' . $refl->getShortName() . 'Factory' . crc32($fqcnProduct);
         $fqcnFM = $refl->getNamespaceName() . '\\' . $fmName;
         if (!class_exists($fqcnFM)) {
-            $template = file_get_contents(__DIR__ . '/factory.tpl');
-            eval(str_replace(array(
-                '_NamespaceProduct_',
-                '_ProductFactory_',
-                '_ConcreteProductFactory_',
-                '_FqcnProduct_'
-                            ), array(
-                $refl->getNamespaceName(),
-                $refl->getShortName() . 'Factory',
-                $fmName,
-                $refl->getName()
-                            ), $template
+            eval($this->generate(
+                            $refl->getNamespaceName(), $refl->getShortName() . 'Factory', $fmName, $refl->getName()
             ));
         }
 
         return new $fqcnFM();
+    }
+
+    protected function generate($ns, $iName, $fName, $product)
+    {
+        $template = file_get_contents(__DIR__ . '/factory.tpl');
+
+        return \str_replace(array(
+            '_NamespaceProduct_',
+            '_ProductFactory_',
+            '_ConcreteProductFactory_',
+            '_FqcnProduct_'
+                ), array(
+            $ns,
+            $iName,
+            $fName,
+            $product
+                ), $template
+        );
     }
 
 }

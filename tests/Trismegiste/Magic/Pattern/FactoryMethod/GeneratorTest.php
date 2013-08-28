@@ -24,23 +24,23 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
     public function testGenerate()
     {
         $this->assertFalse(interface_exists(__NAMESPACE__ . '\DummyFactory'));
-        $factory = $this->generator->generate(__NAMESPACE__ . '\Dummy');
+        $factory = $this->generator->getFactory(__NAMESPACE__ . '\Dummy');
         $this->assertTrue(interface_exists(__NAMESPACE__ . '\DummyFactory'));
         $this->assertInstanceOf(__NAMESPACE__ . '\DummyFactory', $factory);
     }
 
     public function testFactory()
     {
-        $factory = $this->generator->generate(__NAMESPACE__ . '\Dummy');
+        $factory = $this->generator->getFactory(__NAMESPACE__ . '\Dummy');
         $obj = $factory->create();
         $this->assertInstanceOf(__NAMESPACE__ . '\Dummy', $obj);
     }
 
     public function testReentering()
     {
-        $factory1 = $this->generator->generate(__NAMESPACE__ . '\Dummy');
+        $factory1 = $this->generator->getFactory(__NAMESPACE__ . '\Dummy');
         $this->assertInstanceOf(__NAMESPACE__ . '\DummyFactory', $factory1);
-        $factory2 = $this->generator->generate(__NAMESPACE__ . '\Dummy');
+        $factory2 = $this->generator->getFactory(__NAMESPACE__ . '\Dummy');
         $this->assertInstanceOf(__NAMESPACE__ . '\DummyFactory', $factory2);
         $this->assertEquals(get_class($factory1), get_class($factory2));
     }
