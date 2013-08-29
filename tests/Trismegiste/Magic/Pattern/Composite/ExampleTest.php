@@ -8,6 +8,7 @@ namespace tests\Trismegiste\Magic\Pattern\Composite;
 
 use tests\Trismegiste\Magic\Pattern\Composite\Example\File;
 use tests\Trismegiste\Magic\Pattern\Composite\Example\Folder;
+use Trismegiste\Magic\Pattern\Composite\Iterator;
 
 /**
  * ExampleTest tests the composite
@@ -47,15 +48,27 @@ class ExampleTest extends CompositeTestCase
         $this->assertInstanceOf(__NAMESPACE__ . '\Example\File', $current);
     }
 
+    /**
+     * Here it is an example of Iterator with the 
+     * PHP ascii output \RecursiveTreeIterator
+     */
     public function testIterator()
     {
         $depth = 2;
         $current = $this->buildNode($depth);
-        $it = new \Trismegiste\Magic\Pattern\Composite\Iterator($current);
-        $it2 = new \RecursiveTreeIterator($it);
+        $it = new \RecursiveTreeIterator(new Iterator($current));
+        $this->expectOutputString(<<<TREE
+|-[1]
+| |-[0]
+| \-[0]
+\-[1]
+  |-[0]
+  \-[0]
 
-        foreach ($it2 as $etry) {
-            echo $etry . PHP_EOL;
+TREE
+        );
+        foreach ($it as $entry) {
+            echo $entry . PHP_EOL;
         }
     }
 

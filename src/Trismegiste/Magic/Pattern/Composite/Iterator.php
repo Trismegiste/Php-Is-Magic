@@ -7,9 +7,7 @@
 namespace Trismegiste\Magic\Pattern\Composite;
 
 /**
- * Iterator is ...
- *
- * @author flo
+ * Iterator is a recursive iterator Composite Pattern
  */
 class Iterator implements \RecursiveIterator
 {
@@ -28,7 +26,7 @@ class Iterator implements \RecursiveIterator
 
     public function getChildren()
     {
-        if (!($this->branch->current() instanceof Composite)) {
+        if (!($this->hasChildren())) {
             throw new \RuntimeException('No child for this node');
         }
 
