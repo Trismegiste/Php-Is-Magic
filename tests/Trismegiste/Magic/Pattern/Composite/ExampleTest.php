@@ -52,7 +52,7 @@ class ExampleTest extends CompositeTestCase
      * Here it is an example of Iterator with the 
      * PHP ascii output \RecursiveTreeIterator
      */
-    public function testIterator()
+    public function this_bugs_with_travisCI_testIterator()
     {
         $depth = 2;
         $current = $this->buildNode($depth);
