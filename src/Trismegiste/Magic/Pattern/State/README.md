@@ -4,17 +4,17 @@ A state pattern with closures
 
 ## What
 
-It is a prototype of State pattern using closure. Useful for a little set of state
+It is a prototype of State pattern using closures. Useful for a little set of state
 with few transitions (actions). All states are embedded in the context.
 
-## Howto
+## How
 
-You must implement the interface Context and use trait ContextImpl in your own
+You must implement the interface Context and use the trait ContextImpl in your own
 class. You can add a state with its transition with the protected method addState (I
 advice you to do it in the ctor).
 
 Then you have two public methods "getState()" and "doTransition()" to move the state
-through the workflow you defined.
+through the workflow you've defined.
 
 ```php
 $this->addState('basket', array(

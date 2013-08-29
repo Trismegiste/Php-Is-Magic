@@ -61,4 +61,5 @@ is to implement one abstract method "processing" and returning true of false if
 the handler has handled the request or not.
 
 Feel free to extend the Request interface for your needs and don't be afraid to break
-LSP in your handler to check for the Request subclass.
+LSP in your handler to check for the Request subclass, it is a common and valid
+practice.

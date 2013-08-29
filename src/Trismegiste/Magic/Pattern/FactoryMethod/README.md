@@ -20,10 +20,10 @@ $factory = $generator->getFactory('MySpace\MyProduct');
 $newProduct = $factory->create()
 ```
 
-$factory implements the interface MySpace\MyProductFactory
+$factory implements the generated interface MySpace\MyProductFactory
 
-the methood "create" can accept any number of arguments and they passed to
-the construction of MyProduct as is.
+The methood "create" can accept any number of arguments and they are passed to
+the constructor of MyProduct as is.
 
 ## Note
 

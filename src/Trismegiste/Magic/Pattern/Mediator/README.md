@@ -76,5 +76,10 @@ interfaces to follow "[Interface Segregation Principle][1]". Each colleagues mus
 only see a small part of the Mediator public contract. This pattern needs a lot
 of abstraction.
 
+One little warning : perhaps you think this looks like a dispatcher. That's not
+true. A dispatcher will propagate an event to **all** colleagues, unlike the 
+purpose of the Mediator (but it can be misused like a dispatcher)
+If you need to notify one event to multiple receivers, use a dispatcher pattern. 
+
 [1]: http://en.wikipedia.org/wiki/Interface_segregation_principle
 [2]: http://en.wikipedia.org/wiki/Mediator_pattern

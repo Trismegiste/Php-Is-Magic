@@ -20,7 +20,19 @@ or closure that you can use AS IS. They are much like emulators of pattern than
 real new implementation (I don't pretend to invent anything here,
 the GoF are the discovers of patterns for OOP, thanks to them !). 
 
-The others are combo of interface+trait to use it anywhere anytimes. Since
+The others are combo of interface + trait to use it anywhere anytimes. Since
 there's no class to extend, even abstract ones, you are free to design your
 classes how you like it. Interfaces give you strong typing and traits avoid
 the copy-paste bad habit. Let think out of box.
+
+## Y U NO use static code generator
+... instead of using crappy eval and __call ?
+
+I try to avoid code generation. Because in an usual project management, 
+you spend more time on its maintenance and its update than its development,
+code generators are the best way to overwhelm the maintenance capabilities of a 
+team of developers. And IMO, I find code generators kill the K.I.S.S 
+approach and they kill any chance to build better OO design.
+
+Furthermore, most of items in this library are meant to be replaced by
+real patterns, but only when they prove to be **really** useful.

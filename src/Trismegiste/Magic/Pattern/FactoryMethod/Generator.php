@@ -8,6 +8,8 @@ namespace Trismegiste\Magic\Pattern\FactoryMethod;
 
 /**
  * Generator is a dynamic generator for factory methods
+ * 
+ * Note : this class is not coded like a factory because it would be meaningless
  */
 class Generator
 {
@@ -21,7 +23,8 @@ class Generator
      * same namespace as the product classname.
      * 
      * The concrete factory is not of your concern, that's the trick of
-     * factory method.
+     * factory method. That's why I put a random number after the classname
+     * of the concrete factory : do not use that name !
      * 
      * @param string $fqcnProduct
      * 
