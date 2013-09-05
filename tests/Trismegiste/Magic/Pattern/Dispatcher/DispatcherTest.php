@@ -78,4 +78,18 @@ class DispatcherTest extends \PHPUnit_Framework_TestCase
         $this->dispatcher->dispatch('useExtended', $event);
     }
 
+    public function testMagicCall()
+    {
+        $component = $this->getMock(__NAMESPACE__ . '\Component');
+        $this->dispatcher->addListener($component, __NAMESPACE__ . '\Component');
+
+        $this->assertAttributeCount(2, 'listener', $this->dispatcher);
+
+        $component->expects($this->once())
+                ->method('doSomething')
+                ->with($this->event);
+
+        $this->dispatcher->dispatchDoSomething($this->event);
+    }
+
 }

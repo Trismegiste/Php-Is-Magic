@@ -47,4 +47,15 @@ class Dispatcher
         }
     }
 
+    public function __call($methName, array $args)
+    {
+        $extract = array();
+        if (preg_match('#^dispatch([A-Z].+)$#', $methName, $extract) &&
+                (1 == count($args))) {
+            $this->dispatch(lcfirst($extract[1]), $args[0]);
+        } else {
+            trigger_error('Call to undefined method ' . __CLASS__ . '::' . $methName, E_USER_ERROR);
+        }
+    }
+
 }
