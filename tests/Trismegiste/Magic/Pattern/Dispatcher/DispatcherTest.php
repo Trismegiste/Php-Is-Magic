@@ -92,4 +92,13 @@ class DispatcherTest extends \PHPUnit_Framework_TestCase
         $this->dispatcher->dispatchDoSomething($this->event);
     }
 
+    /**
+     * @expectedException PHPUnit_Framework_Error
+     * @expectedExceptionMessage undefined method
+     */
+    public function testMagicCallFailure()
+    {
+        $this->dispatcher->qdjqdjlsxlj();
+    }
+    
 }
