@@ -26,13 +26,12 @@ class Dispatcher
             $methName = $meth->getName();
             if (!$meth->isStatic() &&
                     !preg_match('#^__.+#', $methName) &&
-                    ($meth->getNumberOfParameters() == 1)) {
+                    $meth->getNumberOfParameters() == 1) {
 
-                $classParam = $meth->getParameters()[0]
-                        ->getClass()
-                        ->getName();
+                $classParam = $meth->getParameters()[0]->getClass();
 
-                if ($classParam == __NAMESPACE__ . '\Event') {
+                if (!is_null($classParam) &&
+                        $classParam->implementsInterface(__NAMESPACE__ . '\Event')) {
                     $this->listener[$methName][] = $listener;
                 }
             }

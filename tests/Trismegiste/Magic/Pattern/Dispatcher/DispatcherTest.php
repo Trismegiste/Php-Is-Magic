@@ -59,4 +59,19 @@ class DispatcherTest extends \PHPUnit_Framework_TestCase
         $this->dispatcher->dispatch('nameCollision', $this->event);
     }
 
+    public function testSubclass()
+    {
+        $colleague = $this->getMock(__NAMESPACE__ . '\UsingSubclass');
+        $event = $this->getMock(__NAMESPACE__ . '\Extended');
+        $this->dispatcher->addListener($colleague);
+
+        $this->assertAttributeCount(1, 'listener', $this->dispatcher);
+
+        $colleague->expects($this->once())
+                ->method('useExtended')
+                ->with($event);
+
+        $this->dispatcher->dispatch('useExtended', $event);
+    }
+
 }

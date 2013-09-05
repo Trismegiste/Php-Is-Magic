@@ -14,4 +14,10 @@ interface Component
     public function doSomething(Event $e);
 
     public function nameCollision(Event $e);
+
+    public function notListening1();
+
+    public function notListening2($arf);
+
+    public function notListening3(Event $arf, $excluded);
 }
