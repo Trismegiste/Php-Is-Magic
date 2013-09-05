@@ -15,7 +15,8 @@ class Dispatcher
     protected $listener = array();
 
     /**
-     * Subscribe an object to all methods which can receive an Event
+     * Subscribe an object to all methods which can receive 
+     * an Event (or a subclass of Event)
      * 
      * @param object $listener
      */
@@ -38,6 +39,14 @@ class Dispatcher
         }
     }
 
+    /**
+     * Dispatch an event to all listeners. The matching is between the
+     * event name string and the method name.
+     * 
+     * @param string $methodName
+     * 
+     * @param \Trismegiste\Magic\Pattern\Dispatcher\Event $event
+     */
     public function dispatch($methodName, Event $event)
     {
         if (array_key_exists($methodName, $this->listener)) {
@@ -47,6 +56,12 @@ class Dispatcher
         }
     }
 
+    /**
+     * Magic call to replace 
+     * dispatch('doSomething', $event) by dispatchDoSomething($event)
+     * 
+     * @return void
+     */
     public function __call($methName, array $args)
     {
         $extract = array();
