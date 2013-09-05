@@ -13,49 +13,37 @@ class Dispatcher
 {
 
     protected $listener = array();
-    protected $defaultInterface;
-
-    public function __construct($fqin = null)
-    {
-        $this->defaultInterface = $fqin;
-    }
 
     /**
-     * Subscribe an object to all methods of an interface
+     * Subscribe an object to all methods which can receive an Event
      * 
      * @param object $listener
-     * @param string $fqin fully gualified interface name
      */
-    public function addListener($listener, $fqin = null)
+    public function addListener($listener)
     {
-        if (is_null($fqin)) {
-            $fqin = $this->defaultInterface;
-            if (is_null($fqin)) {
-                throw new \LogicException("No defined interface to listen to");
-            }
-        }
-
-        if (!($listener instanceof $fqin)) {
-            throw new \InvalidArgumentException(get_class($listener) . " does not implements $fqin");
-        }
-
-        $refl = new \ReflectionClass($fqin);
+        $refl = new \ReflectionClass($listener);
         foreach ($refl->getMethods() as $meth) {
             $methName = $meth->getName();
-            if (!$meth->isStatic() && !preg_match('#^__.+#', $methName)) {
-                $this->listener[$methName][] = $listener;
+            if (!$meth->isStatic() &&
+                    !preg_match('#^__.+#', $methName) &&
+                    ($meth->getNumberOfParameters() == 1)) {
+
+                $classParam = $meth->getParameters()[0]
+                        ->getClass()
+                        ->getName();
+
+                if ($classParam == __NAMESPACE__ . '\Event') {
+                    $this->listener[$methName][] = $listener;
+                }
             }
         }
     }
 
-    public function dispatch($methodName)
+    public function dispatch($methodName, Event $event)
     {
-        $param = func_get_args();
-        array_shift($param);
-
         if (array_key_exists($methodName, $this->listener)) {
             foreach ($this->listener[$methodName] as $obj) {
-                call_user_func_array(array($obj, $methodName), $param);
+                call_user_func(array($obj, $methodName), $event);
             }
         }
     }

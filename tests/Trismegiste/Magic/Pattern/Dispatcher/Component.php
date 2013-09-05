@@ -6,15 +6,12 @@
 
 namespace tests\Trismegiste\Magic\Pattern\Dispatcher;
 
-/**
- * Component is a contract for ...
- * 
- * @author flo
- */
+use Trismegiste\Magic\Pattern\Dispatcher\Event;
+
 interface Component
 {
 
-    public function doSomething();
-    
-    public function nameCollision();
+    public function doSomething(Event $e);
+
+    public function nameCollision(Event $e);
 }

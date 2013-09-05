@@ -9,7 +9,7 @@ namespace tests\Trismegiste\Magic\Pattern\Dispatcher;
 use Trismegiste\Magic\Pattern\Dispatcher\Dispatcher;
 
 /**
- * DispatcherTest is ...
+ * DispatcherTest tests the dispatcher
  *
  * @author flo
  */
@@ -17,10 +17,12 @@ class DispatcherTest extends \PHPUnit_Framework_TestCase
 {
 
     protected $dispatcher;
+    protected $event;
 
     protected function setUp()
     {
         $this->dispatcher = new Dispatcher();
+        $this->event = $this->getMock('Trismegiste\Magic\Pattern\Dispatcher\Event');
     }
 
     public function testInvokation()
@@ -28,10 +30,13 @@ class DispatcherTest extends \PHPUnit_Framework_TestCase
         $component = $this->getMock(__NAMESPACE__ . '\Component');
         $this->dispatcher->addListener($component, __NAMESPACE__ . '\Component');
 
-        $component->expects($this->once())
-                ->method('doSomething');
+        $this->assertAttributeCount(2, 'listener', $this->dispatcher);
 
-        $this->dispatcher->dispatch('doSomething');
+        $component->expects($this->once())
+                ->method('doSomething')
+                ->with($this->event);
+
+        $this->dispatcher->dispatch('doSomething', $this->event);
     }
 
     public function testInvokationWithCollision()
@@ -41,12 +46,17 @@ class DispatcherTest extends \PHPUnit_Framework_TestCase
         $this->dispatcher->addListener($component1, __NAMESPACE__ . '\Component');
         $this->dispatcher->addListener($component2, __NAMESPACE__ . '\OtherComponent');
 
-        $component1->expects($this->once())
-                ->method('nameCollision');
-        $component2->expects($this->once())
-                ->method('nameCollision');
+        $this->assertAttributeCount(2, 'listener', $this->dispatcher);
 
-        $this->dispatcher->dispatch('nameCollision');
+        $component1->expects($this->once())
+                ->method('nameCollision')
+                ->with($this->event);
+
+        $component2->expects($this->once())
+                ->method('nameCollision')
+                ->with($this->event);
+
+        $this->dispatcher->dispatch('nameCollision', $this->event);
     }
 
 }
