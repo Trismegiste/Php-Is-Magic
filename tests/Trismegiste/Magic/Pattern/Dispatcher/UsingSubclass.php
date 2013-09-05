@@ -10,4 +10,6 @@ interface UsingSubclass
 {
 
     public function useExtended(Extended $e);
+
+    public function dummyTest($e);
 }

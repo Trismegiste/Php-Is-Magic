@@ -36,7 +36,11 @@ class DispatcherTest extends \PHPUnit_Framework_TestCase
                 ->method('doSomething')
                 ->with($this->event);
 
+        $component->expects($this->never())
+                ->method('notListening2');
+
         $this->dispatcher->dispatch('doSomething', $this->event);
+        $this->dispatcher->dispatch('notListening2', $this->event);
     }
 
     public function testInvokationWithCollision()
