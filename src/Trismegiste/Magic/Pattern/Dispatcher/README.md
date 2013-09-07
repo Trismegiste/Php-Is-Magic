@@ -4,7 +4,7 @@ A sort of Dispatcher
 
 ## What
 
-This is like a dispatcher. Because it does conform to usual, I can't really
+This is like a dispatcher. I can't really
 say it is a dispatcher "by the book". Usually, it involves a subscribing
 contract for components. For a standard and well-coded dispatcher, use the one
 from Symfony, it is quite loosely-coupled and simple to use.
@@ -13,7 +13,8 @@ from Symfony, it is quite loosely-coupled and simple to use.
 
 Here I wanted to explore Reflection and not use interfaces for dispatching, 
 subscribing and components. The goal is to emulate the dispatcher pattern 
-within legacy code and quickly evaluate if this pattern is fitting.
+within legacy code and quickly evaluate if this pattern fits in some some
+code.
 
 ## How
 
@@ -39,7 +40,7 @@ Just like that.
 When your API is frozen, you should add an interface with
 the common called methods and add subscribing with a standard dispatcher.
 
-If only one specific object need to called each time, you don't need a dispatcher
+If only one specific object need to be called each time, you don't need a dispatcher
 but a Mediator. 
 
 There is no error or exception if an event is not caught by any component.

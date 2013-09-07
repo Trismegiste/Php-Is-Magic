@@ -100,5 +100,17 @@ class DispatcherTest extends \PHPUnit_Framework_TestCase
     {
         $this->dispatcher->qdjqdjlsxlj();
     }
-    
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage not an Event
+     */
+    public function testMagicCallWithBadParam()
+    {
+        $component = $this->getMock(__NAMESPACE__ . '\Component');
+        $this->dispatcher->addListener($component, __NAMESPACE__ . '\Component');
+
+        $this->dispatcher->dispatchDoSomething(new \stdClass());
+    }
+
 }

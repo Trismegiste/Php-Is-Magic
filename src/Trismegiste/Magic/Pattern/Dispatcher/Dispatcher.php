@@ -28,11 +28,12 @@ class Dispatcher
             if (!$meth->isStatic() &&
                     !preg_match('#^__.+#', $methName) &&
                     $meth->getNumberOfParameters() == 1) {
-
+                // get type-hint
                 $classParam = $meth->getParameters()[0]->getClass();
-
+                // check type-hint
                 if (!is_null($classParam) &&
                         $classParam->implementsInterface(__NAMESPACE__ . '\Event')) {
+                    // invoke
                     $this->listener[$methName][] = $listener;
                 }
             }
@@ -67,6 +68,11 @@ class Dispatcher
         $extract = array();
         if (preg_match('#^dispatch([A-Z].+)$#', $methName, $extract) &&
                 (1 == count($args))) {
+            // check argument
+            if (!($args[0] instanceof Event)) {
+                throw new \InvalidArgumentException(gettype($args) . " is not an Event");
+            }
+            // invokation
             $this->dispatch(lcfirst($extract[1]), $args[0]);
         } else {
             trigger_error('Call to undefined method ' . __CLASS__ . '::' . $methName, E_USER_ERROR);
