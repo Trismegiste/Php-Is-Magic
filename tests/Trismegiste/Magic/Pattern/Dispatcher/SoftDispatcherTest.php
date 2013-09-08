@@ -11,35 +11,8 @@ use Trismegiste\Magic\Pattern\Dispatcher\SoftDispatcher;
 /**
  * SoftDispatcherTest tests the dispatcher
  */
-class SoftDispatcherTest extends \PHPUnit_Framework_TestCase
+class SoftDispatcherTest extends DispatcherTestCase
 {
-
-    protected $dispatcher;
-    protected $event;
-
-    protected function setUp()
-    {
-        $this->dispatcher = new SoftDispatcher();
-        $this->event = $this->getMock('Trismegiste\Magic\Pattern\Dispatcher\Event');
-    }
-
-    public function testInvokation()
-    {
-        $component = $this->getMock(__NAMESPACE__ . '\Component');
-        $this->dispatcher->addListener($component);
-
-        $this->assertAttributeCount(2, 'listener', $this->dispatcher);
-
-        $component->expects($this->once())
-                ->method('doSomething')
-                ->with($this->event);
-
-        $component->expects($this->never())
-                ->method('notListening2');
-
-        $this->dispatcher->dispatch('doSomething', $this->event);
-        $this->dispatcher->dispatch('notListening2', $this->event);
-    }
 
     public function testInvokationWithCollision()
     {
@@ -61,7 +34,7 @@ class SoftDispatcherTest extends \PHPUnit_Framework_TestCase
         $this->dispatcher->dispatch('nameCollision', $this->event);
     }
 
-    public function testSubclass()
+    public function testEventSubclass()
     {
         $colleague = $this->getMock(__NAMESPACE__ . '\UsingSubclass');
         $event = $this->getMock(__NAMESPACE__ . '\Extended');
@@ -76,39 +49,9 @@ class SoftDispatcherTest extends \PHPUnit_Framework_TestCase
         $this->dispatcher->dispatch('useExtended', $event);
     }
 
-    public function testMagicCall()
+    protected function buildDispatcher()
     {
-        $component = $this->getMock(__NAMESPACE__ . '\Component');
-        $this->dispatcher->addListener($component);
-
-        $this->assertAttributeCount(2, 'listener', $this->dispatcher);
-
-        $component->expects($this->once())
-                ->method('doSomething')
-                ->with($this->event);
-
-        $this->dispatcher->dispatchDoSomething($this->event);
-    }
-
-    /**
-     * @expectedException PHPUnit_Framework_Error
-     * @expectedExceptionMessage undefined method
-     */
-    public function testMagicCallFailure()
-    {
-        $this->dispatcher->qdjqdjlsxlj();
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage not an Event
-     */
-    public function testMagicCallWithBadParam()
-    {
-        $component = $this->getMock(__NAMESPACE__ . '\Component');
-        $this->dispatcher->addListener($component);
-
-        $this->dispatcher->dispatchDoSomething(new \stdClass());
+        return new SoftDispatcher();
     }
 
 }
