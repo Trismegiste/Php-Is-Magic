@@ -1,6 +1,6 @@
 # Dispatcher-like pattern
 
-A sort of Dispatcher
+Two kinds of Dispatcher
 
 ## What
 

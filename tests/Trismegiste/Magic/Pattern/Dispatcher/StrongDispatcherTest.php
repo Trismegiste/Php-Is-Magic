@@ -6,12 +6,12 @@
 
 namespace tests\Trismegiste\Magic\Pattern\Dispatcher;
 
-use Trismegiste\Magic\Pattern\Dispatcher\SoftDispatcher;
+use Trismegiste\Magic\Pattern\Dispatcher\StrongDispatcher;
 
 /**
- * SoftDispatcherTest tests the dispatcher
+ * StrongDispatcherTest tests the StrongDispatcher
  */
-class SoftDispatcherTest extends \PHPUnit_Framework_TestCase
+class StrongDispatcherTest extends \PHPUnit_Framework_TestCase
 {
 
     protected $dispatcher;
@@ -19,7 +19,7 @@ class SoftDispatcherTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->dispatcher = new SoftDispatcher();
+        $this->dispatcher = new StrongDispatcher(__NAMESPACE__ . '\Component');
         $this->event = $this->getMock('Trismegiste\Magic\Pattern\Dispatcher\Event');
     }
 
@@ -41,10 +41,10 @@ class SoftDispatcherTest extends \PHPUnit_Framework_TestCase
         $this->dispatcher->dispatch('notListening2', $this->event);
     }
 
-    public function testInvokationWithCollision()
+    public function testMultipleInvokation()
     {
         $component1 = $this->getMock(__NAMESPACE__ . '\Component');
-        $component2 = $this->getMock(__NAMESPACE__ . '\OtherComponent');
+        $component2 = $this->getMock(__NAMESPACE__ . '\Component');
         $this->dispatcher->addListener($component1);
         $this->dispatcher->addListener($component2);
 
@@ -63,17 +63,16 @@ class SoftDispatcherTest extends \PHPUnit_Framework_TestCase
 
     public function testSubclass()
     {
-        $colleague = $this->getMock(__NAMESPACE__ . '\UsingSubclass');
-        $event = $this->getMock(__NAMESPACE__ . '\Extended');
+        $colleague = $this->getMock(__NAMESPACE__ . '\SubComponent');
         $this->dispatcher->addListener($colleague);
 
-        $this->assertAttributeCount(1, 'listener', $this->dispatcher);
+        $this->assertAttributeCount(2, 'listener', $this->dispatcher);
 
         $colleague->expects($this->once())
-                ->method('useExtended')
-                ->with($event);
+                ->method('doSomething')
+                ->with($this->event);
 
-        $this->dispatcher->dispatch('useExtended', $event);
+        $this->dispatcher->dispatch('doSomething', $this->event);
     }
 
     public function testMagicCall()

@@ -7,7 +7,7 @@
 namespace Trismegiste\Magic\Pattern\Dispatcher;
 
 /**
- * SoftDispatcher is a dispatcher of event baed on reflection and magic call
+ * SoftDispatcher is a dispatcher of event based on reflection
  */
 class SoftDispatcher extends Dispatcher
 {
