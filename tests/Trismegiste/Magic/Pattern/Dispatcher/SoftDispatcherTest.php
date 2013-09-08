@@ -6,14 +6,12 @@
 
 namespace tests\Trismegiste\Magic\Pattern\Dispatcher;
 
-use Trismegiste\Magic\Pattern\Dispatcher\Dispatcher;
+use Trismegiste\Magic\Pattern\Dispatcher\SoftDispatcher;
 
 /**
- * DispatcherTest tests the dispatcher
- *
- * @author flo
+ * SoftDispatcherTest tests the dispatcher
  */
-class DispatcherTest extends \PHPUnit_Framework_TestCase
+class SoftDispatcherTest extends \PHPUnit_Framework_TestCase
 {
 
     protected $dispatcher;
@@ -21,7 +19,7 @@ class DispatcherTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->dispatcher = new Dispatcher();
+        $this->dispatcher = new SoftDispatcher();
         $this->event = $this->getMock('Trismegiste\Magic\Pattern\Dispatcher\Event');
     }
 
