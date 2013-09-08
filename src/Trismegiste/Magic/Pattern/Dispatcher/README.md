@@ -13,8 +13,7 @@ from Symfony, it is quite loosely-coupled and simple to use.
 
 Here I wanted to explore Reflection and not use interfaces for dispatching, 
 subscribing and components. The goal is to emulate the dispatcher pattern 
-within legacy code and quickly evaluate if this pattern fits in some some
-code.
+within legacy code and quickly evaluate if this pattern fits in.
 
 ## How
 

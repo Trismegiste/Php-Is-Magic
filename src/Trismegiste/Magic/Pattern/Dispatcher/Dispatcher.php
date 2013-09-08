@@ -7,7 +7,7 @@
 namespace Trismegiste\Magic\Pattern\Dispatcher;
 
 /**
- * Dispatcher is a dispatcher of event with closures and magic call
+ * Dispatcher is a dispatcher of event with reflection and magic call
  */
 class Dispatcher
 {
@@ -23,7 +23,7 @@ class Dispatcher
     public function addListener($listener)
     {
         $refl = new \ReflectionClass($listener);
-        foreach ($refl->getMethods() as $meth) {
+        foreach ($refl->getMethods(\ReflectionMethod::IS_PUBLIC) as $meth) {
             $methName = $meth->getName();
             if (!$meth->isStatic() &&
                     !preg_match('#^__.+#', $methName) &&
@@ -33,7 +33,7 @@ class Dispatcher
                 // check type-hint
                 if (!is_null($classParam) &&
                         $classParam->implementsInterface(__NAMESPACE__ . '\Event')) {
-                    // invoke
+                    // subscribes
                     $this->listener[$methName][] = $listener;
                 }
             }
