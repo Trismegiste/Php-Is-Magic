@@ -15,7 +15,7 @@ Here I wanted to explore Reflection and not use interfaces for dispatching,
 subscribing and components. The goal is to emulate the dispatcher pattern 
 within legacy code and quickly evaluate if this pattern fits in.
 
-## How
+## Soft-typed dispatcher
 
 Very simple actually. All object's methods with one parameter with a 
 type-hint "Event" are subscribed no matter the type of the object.
@@ -23,7 +23,7 @@ type-hint "Event" are subscribed no matter the type of the object.
 It also works if the type-hint is a subclass of Event. 
 
 ```php
-$dispatcher = new Dispatcher();
+$dispatcher = new SoftDispatcher();
 // $someObj has a method doSomething(Event $e)
 $dispatcher->addListener($someObj);
 $dispatcher->dispatch('doSomething', new ConcreteEvent());
@@ -33,6 +33,23 @@ $dispatcher->dispatchDoSomething(new ConcreteEvent());
 ```
 
 Just like that.
+
+## Strong-typed Dispatcher
+
+This is the as the soft-typed dispatcher except methods are limited to
+one interface.
+
+```php
+$dispatcher = new StrongDispatcher('MyInterface');
+// $someObj has a method doSomething(Event $e)
+$dispatcher->addListener($someObj);
+$dispatcher->dispatch('doSomething', new ConcreteEvent());
+-- or --
+$dispatcher->dispatchDoSomething(new ConcreteEvent());
+// all objects with method doSomething(Event $e) will be called
+```
+
+You have strong typing and be sure to launch events without chance of NPE.
 
 ## Note
 
@@ -44,6 +61,6 @@ but a Mediator.
 
 There is no error or exception if an event is not caught by any component.
 
-Despite the soft-typing, this emulator is quite safe due to multiple validators.
+Despite the soft-typing, these emulators are quite safe due to multiple validators.
 
 Have fun.
