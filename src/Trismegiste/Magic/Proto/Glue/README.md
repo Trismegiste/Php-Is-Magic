@@ -5,7 +5,7 @@ You like Javascript and its lack of classes ?
 ## What
 
 Thanks to this trait, you can mess your project with javascript-like notation
-of objects.
+of objects. There is no strong-typing nor validation possibilities.
 
 # How
 

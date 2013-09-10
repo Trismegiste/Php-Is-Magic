@@ -7,7 +7,7 @@
 namespace Trismegiste\Magic\Proto\Glue;
 
 /**
- * Glued is an aggregation of methods javascript-like capability.
+ * Glued is an aggregation of methods javascript-like behavior.
  * 
  * Note : for experimental use only !
  */
