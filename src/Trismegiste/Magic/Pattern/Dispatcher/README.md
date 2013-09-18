@@ -36,12 +36,12 @@ Just like that.
 
 ## Strong-typed Dispatcher
 
-This is the as the soft-typed dispatcher except methods are limited to
+This is the same as the soft-typed dispatcher except methods are limited to
 one interface.
 
 ```php
 $dispatcher = new StrongDispatcher('MyInterface');
-// $someObj has a method doSomething(Event $e)
+// $someObj implements the method doSomething(Event $e) from MyInterface
 $dispatcher->addListener($someObj);
 $dispatcher->dispatch('doSomething', new ConcreteEvent());
 -- or --
