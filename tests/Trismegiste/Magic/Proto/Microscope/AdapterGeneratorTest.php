@@ -25,6 +25,13 @@ class AdapterGeneratorTest extends \PHPUnit_Framework_TestCase
         $this->adapterFqcn = __NAMESPACE__ . '\Adapter';
     }
 
+    protected function createAdapted($obj)
+    {
+        $fqcn = $this->adapterFqcn;
+
+        return new $fqcn($obj);
+    }
+
     public function testGeneration()
     {
         $this->assertFalse(class_exists($this->adapterFqcn));
@@ -39,11 +46,10 @@ class AdapterGeneratorTest extends \PHPUnit_Framework_TestCase
                 ->method('proto');
 
         $arr = array();
-        $fqcn = $this->adapterFqcn;
-        $adapted = new $fqcn($this->wrapped);
-        $adapted->proto($this->getMock('Iterator'), $arr, function() {
-                    
-                });
+        $this->createAdapted($this->wrapped)
+                ->proto($this->getMock('Iterator'), $arr, function() {
+                            
+                        });
     }
 
     /**
@@ -52,9 +58,8 @@ class AdapterGeneratorTest extends \PHPUnit_Framework_TestCase
      */
     public function testNotMatched()
     {
-        $fqcn = $this->adapterFqcn;
-        $adapted = new $fqcn($this->wrapped);
-        $adapted->noMatching();
+        $this->createAdapted($this->wrapped)
+                ->noMatching();
     }
 
     /**
@@ -63,9 +68,8 @@ class AdapterGeneratorTest extends \PHPUnit_Framework_TestCase
      */
     public function testNoMatchingDueToReferencedArg()
     {
-        $fqcn = $this->adapterFqcn;
-        $adapted = new $fqcn($this->wrapped);
-        $adapted->checkReference('dummy');
+        $this->createAdapted($this->wrapped)
+                ->checkReference('dummy');
     }
 
     /**
@@ -74,9 +78,8 @@ class AdapterGeneratorTest extends \PHPUnit_Framework_TestCase
      */
     public function testNoMatchingDueToTypeArray()
     {
-        $fqcn = $this->adapterFqcn;
-        $adapted = new $fqcn($this->wrapped);
-        $adapted->checkArray(array());
+        $this->createAdapted($this->wrapped)
+                ->checkArray(array());
     }
 
     /**
@@ -85,9 +88,29 @@ class AdapterGeneratorTest extends \PHPUnit_Framework_TestCase
      */
     public function testNoMatchingDueToParamCount()
     {
-        $fqcn = $this->adapterFqcn;
-        $adapted = new $fqcn($this->wrapped);
-        $adapted->checkNumber(73, 42);
+        $this->createAdapted($this->wrapped)
+                ->checkNumber(73, 42);
+    }
+
+    /**
+     * @expectedException BadMethodCallException
+     * @expectedExceptionMessage implemented
+     */
+    public function testNoMatchingDueToReturnedRef()
+    {
+        $this->createAdapted($this->wrapped)
+                ->checkReturnRef();
+    }
+
+    /**
+     * @expectedException LogicException
+     * @expectedExceptionMessage interface
+     */
+    public function testValidator()
+    {
+        $code = $this->generator->generate(
+                new \ReflectionClass('ArrayObject'), 'aaaa', new \ReflectionClass($this->wrapped)
+        );
     }
 
 }

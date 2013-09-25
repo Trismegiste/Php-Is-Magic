@@ -12,6 +12,8 @@ interface Reduced
     public function checkReference($arg);
 
     public function checkArray(array $arg);
-    
+
     public function checkNumber($a, $b);
+
+    public function checkReturnRef();
 }

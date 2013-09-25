@@ -30,4 +30,9 @@ class TooBig
         
     }
 
+    public function &checkReturnRef()
+    {
+        
+    }
+
 }
