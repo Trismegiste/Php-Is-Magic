@@ -48,16 +48,15 @@ class Builder
     {
         $refl = new \ReflectionClass($this->interfaceName);
         $adapterName = $refl->getShortName() . 'Adapter_' . md5(get_class($wrapped));
+        $adapterFqcn = $refl->getNamespaceName() . '\\' . $adapterName;
 
-        $generated = $this->generator->generate($refl, $adapterName, new \ReflectionClass($wrapped));
-
-        try {
+        if (!class_exists($adapterFqcn)) {
+            $generated = $this->generator->generate($refl, $adapterName, new \ReflectionClass($wrapped));
             eval($generated);
-            $adapted = new \ReflectionClass($refl->getNamespaceName() . '\\' . $adapterName);
-            $decorated = $adapted->newInstance($wrapped);
-        } catch (\Exception $e) {
-            throw new \RuntimeException($e->getMessage());
         }
+
+        $adapted = new \ReflectionClass($adapterFqcn);
+        $decorated = $adapted->newInstance($wrapped);
 
         return $decorated;
     }
