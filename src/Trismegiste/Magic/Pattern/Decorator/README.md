@@ -19,7 +19,7 @@ and it is dynamic. The drawback is it's slower (just a little)
 
 Starting with an interface. The decorator pattern is based on a contract, 
 both implemented by "real" object and by decorator. If your kewl new source code
-don't rely on interfaces but concrete classes, well, I must inform you it 
+doesn't rely on interfaces but concrete classes, well, I must inform you it 
 is not that kewl than you think...
 
 This builder instantiates a new decorator implementing the contract and wrapping
