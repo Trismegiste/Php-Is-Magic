@@ -47,20 +47,16 @@ class Builder
     public function reduce($wrapped)
     {
         $refl = new \ReflectionClass($this->interfaceName);
-        $decoratorName = $refl->getShortName() . 'Adapter_' . md5(get_class($wrapped));
+        $adapterName = $refl->getShortName() . 'Adapter_' . md5(get_class($wrapped));
 
-        $generated = $this->generator->generate($refl, $decoratorName, new \ReflectionClass($wrapped));
+        $generated = $this->generator->generate($refl, $adapterName, new \ReflectionClass($wrapped));
 
         try {
             eval($generated);
-            $refl = new \ReflectionClass($refl->getNamespaceName() . '\\' . $decoratorName);
-            $decorated = $refl->newInstance($wrapped);
+            $adapted = new \ReflectionClass($refl->getNamespaceName() . '\\' . $adapterName);
+            $decorated = $adapted->newInstance($wrapped);
         } catch (\Exception $e) {
             throw new \RuntimeException($e->getMessage());
-        }
-
-        foreach ($this->implementation as $name => $method) {
-            call_user_func(array($decorated, $injectClosure), $name, \Closure::bind($method, $decorated, $refl->getName()));
         }
 
         return $decorated;
