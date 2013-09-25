@@ -19,7 +19,6 @@ class AdapterGenerator
     {
         $this->redirect = new RedirectGenerator();
         $this->missing = new MissingGenerator();
-                
     }
 
     public function generate(\ReflectionClass $refl, $adapterName, \ReflectionClass $wrapped)
@@ -64,7 +63,7 @@ class AdapterGenerator
 
             foreach ($targetParam as $idx => $to) {
                 $from = $sourceParam[$idx];
-                
+
                 if (($to->isArray() != $from->isArray()) ||
                         ($to->getClass() != $from->getClass()) ||
                         ($to->isCallable() != $from->isCallable()) ||

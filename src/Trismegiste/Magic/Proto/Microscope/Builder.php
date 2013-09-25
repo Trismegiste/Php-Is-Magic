@@ -41,8 +41,6 @@ class Builder
      * @param object $wrapped object that will be adapted
      * 
      * @return object the adapted object (aka adaptee)
-     * 
-     * @throws \RuntimeException if generation fails
      */
     public function reduce($wrapped)
     {

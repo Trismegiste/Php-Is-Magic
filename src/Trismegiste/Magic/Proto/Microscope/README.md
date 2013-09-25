@@ -23,8 +23,8 @@ interfaces, this is the best way to loosely-coupled your new system.
 
 You have legacy code full of concrete classes without abstraction and you have
 developped a new system you need to connect with. You have 4 solutions :
- 1. type-hint your new system with concrete class : bad
- 2. no type-hint and relying on luck for hidden coupling : the worst
+ 1. dismiss type-hint and relying on luck for hidden coupling : the worst
+ 2. type-hint your new system with concrete class : bad
  3. type-hint your new system with interfaces and injecting them in legacy code : good but could frighten your project manager
  4. using adapters to narrow the scope of your big object : the best but this is a boring job
 
@@ -34,7 +34,7 @@ This is a builder for the fourth solution. You need an instance of concrete
 class with a big contract and a new interface which share some of its methods
 with the class. The builder generates the adapter and wraps the existing object.
 
-It redirects all methods with the same signature from the interface to the object.
+It redirects all methods with the same signature from the interface to the wrapped object.
 
 The scope is narrower, that's why: "microscope".
 
@@ -51,3 +51,6 @@ dumb adapters coupled with the legacy code (that you will throw, someday)
 
 If method signatures do not match, use a true adapter or the dynamic adapter builder
 I provide in this library (it uses closures to adapt your class to the new interface)
+
+All interface methods that cannot be matched will throw an exception to prevent silent
+bugs.

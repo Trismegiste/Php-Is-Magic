@@ -58,8 +58,7 @@ class AdapterGeneratorTest extends \PHPUnit_Framework_TestCase
      */
     public function testNotMatched()
     {
-        $this->createAdapted($this->wrapped)
-                ->noMatching();
+        $this->createAdapted($this->wrapped)->noMatching();
     }
 
     /**
@@ -68,8 +67,7 @@ class AdapterGeneratorTest extends \PHPUnit_Framework_TestCase
      */
     public function testNoMatchingDueToReferencedArg()
     {
-        $this->createAdapted($this->wrapped)
-                ->checkReference('dummy');
+        $this->createAdapted($this->wrapped)->checkReference('dummy');
     }
 
     /**
@@ -78,8 +76,7 @@ class AdapterGeneratorTest extends \PHPUnit_Framework_TestCase
      */
     public function testNoMatchingDueToTypeArray()
     {
-        $this->createAdapted($this->wrapped)
-                ->checkArray(array());
+        $this->createAdapted($this->wrapped)->checkArray(array());
     }
 
     /**
@@ -88,8 +85,7 @@ class AdapterGeneratorTest extends \PHPUnit_Framework_TestCase
      */
     public function testNoMatchingDueToParamCount()
     {
-        $this->createAdapted($this->wrapped)
-                ->checkNumber(73, 42);
+        $this->createAdapted($this->wrapped)->checkNumber(73, 42);
     }
 
     /**
@@ -98,8 +94,7 @@ class AdapterGeneratorTest extends \PHPUnit_Framework_TestCase
      */
     public function testNoMatchingDueToReturnedRef()
     {
-        $this->createAdapted($this->wrapped)
-                ->checkReturnRef();
+        $this->createAdapted($this->wrapped)->checkReturnRef();
     }
 
     /**
@@ -108,7 +103,7 @@ class AdapterGeneratorTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidator()
     {
-        $code = $this->generator->generate(
+        $this->generator->generate(
                 new \ReflectionClass('ArrayObject'), 'aaaa', new \ReflectionClass($this->wrapped)
         );
     }

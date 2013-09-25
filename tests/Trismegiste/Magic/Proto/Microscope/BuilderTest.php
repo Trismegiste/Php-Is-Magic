@@ -34,12 +34,16 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 
     public function testWrappingSameParamSameClass()
     {
-        $obj1 = $this->builder->scope($this->adapterFqcn)
+        $obj1 = $this->builder
+                ->scope($this->adapterFqcn)
                 ->reduce($this->wrapped);
         $this->assertInstanceOf($this->adapterFqcn, $obj1);
-        $obj2 = $this->builder->scope($this->adapterFqcn)
+
+        $obj2 = $this->builder
+                ->scope($this->adapterFqcn)
                 ->reduce(new TooBig());
         $this->assertInstanceOf($this->adapterFqcn, $obj2);
+
         $this->assertEquals(get_class($obj1), get_class($obj2));
     }
 
